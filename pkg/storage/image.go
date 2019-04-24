@@ -643,7 +643,7 @@ func GetImageService(ctx context.Context, sc *types.SystemContext, store storage
 			return nil, err
 		}
 		for _, r := range systemRegistries {
-			is.unqualifiedSearchRegistries = append(is.unqualifiedSearchRegistries, r.URL)
+			is.unqualifiedSearchRegistries = append(is.unqualifiedSearchRegistries, r.Prefix)
 		}
 	}
 
