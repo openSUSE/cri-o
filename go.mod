@@ -104,7 +104,7 @@ require (
 	k8s.io/client-go v0.0.0-20190409092706-ca8df85b1798
 	k8s.io/cloud-provider v0.0.0-20190409133700-fca63a37790d // indirect
 	k8s.io/kube-openapi v0.0.0-20190306001800-15615b16d372 // indirect
-	k8s.io/kubernetes v1.14.0
+	k8s.io/kubernetes v1.14.1
 	k8s.io/utils v0.0.0-20190308190857-21c4ce38f2a7
 )
 
