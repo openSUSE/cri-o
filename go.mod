@@ -19,7 +19,7 @@ require (
 	github.com/containerd/typeurl v0.0.0-20180627222232-a93fcdb778cd // indirect
 	github.com/containernetworking/cni v0.7.0-rc2
 	github.com/containernetworking/plugins v0.7.5
-	github.com/containers/buildah v1.7.2
+	github.com/containers/buildah v1.8.0
 	github.com/containers/image v1.5.1
 	github.com/containers/libpod v1.2.0
 	github.com/containers/psgo v0.0.0-20180822121435-5dde6da0bc88 // indirect
