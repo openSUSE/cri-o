@@ -300,7 +300,27 @@ jobs:
           name: check vendoring
           command: |
             make vendor
-            hack/tree_status.sh
+
+            GIT_STATUS=$(git status --porcelain)
+            OLD_MSG=$(git log --format=%B -n1)
+            STAGED_MSG="Staged: "
+            if [[ -z $GIT_STATUS ]]; then
+              exit 0
+            elif [[ "${CIRCLE_PROJECT_USERNAME}" == "openSUSE" ]] &&
+                 [[ "${OLD_MSG}" != *"${STAGED_MSG}"* ]] &&
+                 [[ "${CIRCLE_BRANCH}" == "dependabot/"* ]]; then
+              echo "tree is dirty, staging changes"
+              git config --global user.email "sgrunert@suse.com"
+              git config --global user.name "Sascha Grunert"
+              git add go.* vendor
+              git commit --amend -m"$OLD_MSG" -m"${STAGED_MSG} $(date)"
+              git push -fu origin ${CIRCLE_BRANCH}
+              exit 1
+            else
+              echo "tree is dirty"
+              echo "$STATUS"
+              exit 1
+            fi
       - save_cache:
           key: v1-vendor-{{ checksum "go.sum" }}
           paths:
