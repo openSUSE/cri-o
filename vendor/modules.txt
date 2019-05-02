@@ -61,7 +61,7 @@ github.com/containernetworking/cni/pkg/invoke
 github.com/containernetworking/cni/pkg/version
 # github.com/containernetworking/plugins v0.7.5
 github.com/containernetworking/plugins/pkg/ns
-# github.com/containers/buildah v1.7.2
+# github.com/containers/buildah v1.8.0
 github.com/containers/buildah/pkg/secrets
 github.com/containers/buildah
 github.com/containers/buildah/imagebuildah
@@ -71,7 +71,7 @@ github.com/containers/buildah/chroot
 github.com/containers/buildah/docker
 github.com/containers/buildah/pkg/blobcache
 github.com/containers/buildah/pkg/chrootuser
-github.com/containers/buildah/unshare
+github.com/containers/buildah/pkg/unshare
 # github.com/containers/image v1.5.1
 github.com/containers/image/pkg/sysregistries
 github.com/containers/image/pkg/sysregistriesv2
@@ -267,6 +267,9 @@ github.com/docker/go-metrics
 # github.com/docker/go-units v0.3.3
 github.com/docker/go-units
 # github.com/docker/libnetwork v0.8.0-dev.2.0.20180608203834-19279f049241
+github.com/docker/libnetwork/resolvconf
+github.com/docker/libnetwork/types
+github.com/docker/libnetwork/resolvconf/dns
 github.com/docker/libnetwork/ipamutils
 # github.com/docker/libtrust v0.0.0-20160708172513-aabc10ec26b7
 github.com/docker/libtrust
@@ -462,6 +465,8 @@ github.com/hpcloud/tail/winfile
 github.com/imdario/mergo
 # github.com/inconshreveable/mousetrap v1.0.0
 github.com/inconshreveable/mousetrap
+# github.com/ishidawataru/sctp v0.0.0-20180918013207-6e2cb1366111
+github.com/ishidawataru/sctp
 # github.com/json-iterator/go v0.0.0-20180701071628-ab8a2e0c74be
 github.com/json-iterator/go
 # github.com/kisielk/gotool v1.0.0

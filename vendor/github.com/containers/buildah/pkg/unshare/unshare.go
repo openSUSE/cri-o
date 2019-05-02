@@ -3,21 +3,25 @@
 package unshare
 
 import (
+	"bufio"
 	"bytes"
 	"fmt"
 	"io"
 	"os"
 	"os/exec"
+	"os/user"
 	"runtime"
 	"strconv"
 	"strings"
 	"sync"
 	"syscall"
 
-	"github.com/containers/buildah/util"
+	"github.com/containers/storage/pkg/idtools"
 	"github.com/containers/storage/pkg/reexec"
 	"github.com/opencontainers/runtime-spec/specs-go"
 	"github.com/pkg/errors"
+	"github.com/sirupsen/logrus"
+	"github.com/syndtr/gocapability/capability"
 )
 
 // Cmd wraps an exec.Cmd created by the reexec package in unshare(), and
@@ -54,7 +58,7 @@ func (c *Cmd) Start() error {
 	if c.Env == nil {
 		c.Env = os.Environ()
 	}
-	c.Env = append(c.Env, fmt.Sprintf("_Buildah-unshare=%d", c.UnshareFlags))
+	c.Env = append(c.Env, fmt.Sprintf("_Containers-unshare=%d", c.UnshareFlags))
 
 	// Please the libpod "rootless" package to find the expected env variables.
 	if os.Geteuid() != 0 {
@@ -67,7 +71,7 @@ func (c *Cmd) Start() error {
 	if err != nil {
 		return errors.Wrapf(err, "error creating pid pipe")
 	}
-	c.Env = append(c.Env, fmt.Sprintf("_Buildah-pid-pipe=%d", len(c.ExtraFiles)+3))
+	c.Env = append(c.Env, fmt.Sprintf("_Containers-pid-pipe=%d", len(c.ExtraFiles)+3))
 	c.ExtraFiles = append(c.ExtraFiles, pidWrite)
 
 	// Create the pipe for letting the child know to proceed.
@@ -77,18 +81,18 @@ func (c *Cmd) Start() error {
 		pidWrite.Close()
 		return errors.Wrapf(err, "error creating pid pipe")
 	}
-	c.Env = append(c.Env, fmt.Sprintf("_Buildah-continue-pipe=%d", len(c.ExtraFiles)+3))
+	c.Env = append(c.Env, fmt.Sprintf("_Containers-continue-pipe=%d", len(c.ExtraFiles)+3))
 	c.ExtraFiles = append(c.ExtraFiles, continueRead)
 
 	// Pass along other instructions.
 	if c.Setsid {
-		c.Env = append(c.Env, "_Buildah-setsid=1")
+		c.Env = append(c.Env, "_Containers-setsid=1")
 	}
 	if c.Setpgrp {
-		c.Env = append(c.Env, "_Buildah-setpgrp=1")
+		c.Env = append(c.Env, "_Containers-setpgrp=1")
 	}
 	if c.Ctty != nil {
-		c.Env = append(c.Env, fmt.Sprintf("_Buildah-ctty=%d", len(c.ExtraFiles)+3))
+		c.Env = append(c.Env, fmt.Sprintf("_Containers-ctty=%d", len(c.ExtraFiles)+3))
 		c.ExtraFiles = append(c.ExtraFiles, c.Ctty)
 	}
 
@@ -154,7 +158,7 @@ func (c *Cmd) Start() error {
 		}
 
 		if len(c.UidMappings) == 0 || len(c.GidMappings) == 0 {
-			uidmap, gidmap, err := util.GetHostIDMappings("")
+			uidmap, gidmap, err := GetHostIDMappings("")
 			if err != nil {
 				fmt.Fprintf(continueWrite, "error reading ID mappings in parent: %v", err)
 				return errors.Wrapf(err, "error reading ID mappings in parent")
@@ -305,4 +309,237 @@ func GetRootlessUID() int {
 // RootlessEnv returns the environment settings for the rootless containers
 func RootlessEnv() []string {
 	return append(os.Environ(), UsernsEnvName+"=done")
+}
+
+type Runnable interface {
+	Run() error
+}
+
+func bailOnError(err error, format string, a ...interface{}) {
+	if err != nil {
+		if format != "" {
+			logrus.Errorf("%s: %v", fmt.Sprintf(format, a...), err)
+		} else {
+			logrus.Errorf("%v", err)
+		}
+		os.Exit(1)
+	}
+}
+
+// MaybeReexecUsingUserNamespace re-exec the process in a new namespace
+func MaybeReexecUsingUserNamespace(evenForRoot bool) {
+	// If we've already been through this once, no need to try again.
+	if os.Geteuid() == 0 && IsRootless() {
+		return
+	}
+
+	var uidNum, gidNum uint64
+	// Figure out who we are.
+	me, err := user.Current()
+	if !os.IsNotExist(err) {
+		bailOnError(err, "error determining current user")
+		uidNum, err = strconv.ParseUint(me.Uid, 10, 32)
+		bailOnError(err, "error parsing current UID %s", me.Uid)
+		gidNum, err = strconv.ParseUint(me.Gid, 10, 32)
+		bailOnError(err, "error parsing current GID %s", me.Gid)
+	}
+
+	runtime.LockOSThread()
+	defer runtime.UnlockOSThread()
+
+	// ID mappings to use to reexec ourselves.
+	var uidmap, gidmap []specs.LinuxIDMapping
+	if uidNum != 0 || evenForRoot {
+		// Read the set of ID mappings that we're allowed to use.  Each
+		// range in /etc/subuid and /etc/subgid file is a starting host
+		// ID and a range size.
+		uidmap, gidmap, err = GetSubIDMappings(me.Username, me.Username)
+		bailOnError(err, "error reading allowed ID mappings")
+		if len(uidmap) == 0 {
+			logrus.Warnf("Found no UID ranges set aside for user %q in /etc/subuid.", me.Username)
+		}
+		if len(gidmap) == 0 {
+			logrus.Warnf("Found no GID ranges set aside for user %q in /etc/subgid.", me.Username)
+		}
+		// Map our UID and GID, then the subuid and subgid ranges,
+		// consecutively, starting at 0, to get the mappings to use for
+		// a copy of ourselves.
+		uidmap = append([]specs.LinuxIDMapping{{HostID: uint32(uidNum), ContainerID: 0, Size: 1}}, uidmap...)
+		gidmap = append([]specs.LinuxIDMapping{{HostID: uint32(gidNum), ContainerID: 0, Size: 1}}, gidmap...)
+		var rangeStart uint32
+		for i := range uidmap {
+			uidmap[i].ContainerID = rangeStart
+			rangeStart += uidmap[i].Size
+		}
+		rangeStart = 0
+		for i := range gidmap {
+			gidmap[i].ContainerID = rangeStart
+			rangeStart += gidmap[i].Size
+		}
+	} else {
+		// If we have CAP_SYS_ADMIN, then we don't need to create a new namespace in order to be able
+		// to use unshare(), so don't bother creating a new user namespace at this point.
+		capabilities, err := capability.NewPid(0)
+		bailOnError(err, "error reading the current capabilities sets")
+		if capabilities.Get(capability.EFFECTIVE, capability.CAP_SYS_ADMIN) {
+			return
+		}
+		// Read the set of ID mappings that we're currently using.
+		uidmap, gidmap, err = GetHostIDMappings("")
+		bailOnError(err, "error reading current ID mappings")
+		// Just reuse them.
+		for i := range uidmap {
+			uidmap[i].HostID = uidmap[i].ContainerID
+		}
+		for i := range gidmap {
+			gidmap[i].HostID = gidmap[i].ContainerID
+		}
+	}
+
+	// Unlike most uses of reexec or unshare, we're using a name that
+	// _won't_ be recognized as a registered reexec handler, since we
+	// _want_ to fall through reexec.Init() to the normal main().
+	cmd := Command(append([]string{fmt.Sprintf("%s-in-a-user-namespace", os.Args[0])}, os.Args[1:]...)...)
+
+	// If, somehow, we don't become UID 0 in our child, indicate that the child shouldn't try again.
+	err = os.Setenv(UsernsEnvName, "1")
+	bailOnError(err, "error setting %s=1 in environment", UsernsEnvName)
+
+	// Set the default isolation type to use the "rootless" method.
+	if _, present := os.LookupEnv("BUILDAH_ISOLATION"); !present {
+		if err = os.Setenv("BUILDAH_ISOLATION", "rootless"); err != nil {
+			if err := os.Setenv("BUILDAH_ISOLATION", "rootless"); err != nil {
+				logrus.Errorf("error setting BUILDAH_ISOLATION=rootless in environment: %v", err)
+				os.Exit(1)
+			}
+		}
+	}
+
+	// Reuse our stdio.
+	cmd.Stdin = os.Stdin
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+
+	// Set up a new user namespace with the ID mapping.
+	cmd.UnshareFlags = syscall.CLONE_NEWUSER | syscall.CLONE_NEWNS
+	cmd.UseNewuidmap = uidNum != 0
+	cmd.UidMappings = uidmap
+	cmd.UseNewgidmap = uidNum != 0
+	cmd.GidMappings = gidmap
+	cmd.GidMappingsEnableSetgroups = true
+
+	// Finish up.
+	logrus.Debugf("running %+v with environment %+v, UID map %+v, and GID map %+v", cmd.Cmd.Args, os.Environ(), cmd.UidMappings, cmd.GidMappings)
+	ExecRunnable(cmd)
+}
+
+// ExecRunnable runs the specified unshare command, captures its exit status,
+// and exits with the same status.
+func ExecRunnable(cmd Runnable) {
+	if err := cmd.Run(); err != nil {
+		if exitError, ok := errors.Cause(err).(*exec.ExitError); ok {
+			if exitError.ProcessState.Exited() {
+				if waitStatus, ok := exitError.ProcessState.Sys().(syscall.WaitStatus); ok {
+					if waitStatus.Exited() {
+						logrus.Errorf("%v", exitError)
+						os.Exit(waitStatus.ExitStatus())
+					}
+					if waitStatus.Signaled() {
+						logrus.Errorf("%v", exitError)
+						os.Exit(int(waitStatus.Signal()) + 128)
+					}
+				}
+			}
+		}
+		logrus.Errorf("%v", err)
+		logrus.Errorf("(unable to determine exit status)")
+		os.Exit(1)
+	}
+	os.Exit(0)
+}
+
+// getHostIDMappings reads mappings from the named node under /proc.
+func getHostIDMappings(path string) ([]specs.LinuxIDMapping, error) {
+	var mappings []specs.LinuxIDMapping
+	f, err := os.Open(path)
+	if err != nil {
+		return nil, errors.Wrapf(err, "error reading ID mappings from %q", path)
+	}
+	defer f.Close()
+	scanner := bufio.NewScanner(f)
+	for scanner.Scan() {
+		line := scanner.Text()
+		fields := strings.Fields(line)
+		if len(fields) != 3 {
+			return nil, errors.Errorf("line %q from %q has %d fields, not 3", line, path, len(fields))
+		}
+		cid, err := strconv.ParseUint(fields[0], 10, 32)
+		if err != nil {
+			return nil, errors.Wrapf(err, "error parsing container ID value %q from line %q in %q", fields[0], line, path)
+		}
+		hid, err := strconv.ParseUint(fields[1], 10, 32)
+		if err != nil {
+			return nil, errors.Wrapf(err, "error parsing host ID value %q from line %q in %q", fields[1], line, path)
+		}
+		size, err := strconv.ParseUint(fields[2], 10, 32)
+		if err != nil {
+			return nil, errors.Wrapf(err, "error parsing size value %q from line %q in %q", fields[2], line, path)
+		}
+		mappings = append(mappings, specs.LinuxIDMapping{ContainerID: uint32(cid), HostID: uint32(hid), Size: uint32(size)})
+	}
+	return mappings, nil
+}
+
+// GetHostIDMappings reads mappings for the specified process (or the current
+// process if pid is "self" or an empty string) from the kernel.
+func GetHostIDMappings(pid string) ([]specs.LinuxIDMapping, []specs.LinuxIDMapping, error) {
+	if pid == "" {
+		pid = "self"
+	}
+	uidmap, err := getHostIDMappings(fmt.Sprintf("/proc/%s/uid_map", pid))
+	if err != nil {
+		return nil, nil, err
+	}
+	gidmap, err := getHostIDMappings(fmt.Sprintf("/proc/%s/gid_map", pid))
+	if err != nil {
+		return nil, nil, err
+	}
+	return uidmap, gidmap, nil
+}
+
+// GetSubIDMappings reads mappings from /etc/subuid and /etc/subgid.
+func GetSubIDMappings(user, group string) ([]specs.LinuxIDMapping, []specs.LinuxIDMapping, error) {
+	mappings, err := idtools.NewIDMappings(user, group)
+	if err != nil {
+		return nil, nil, errors.Wrapf(err, "error reading subuid mappings for user %q and subgid mappings for group %q", user, group)
+	}
+	var uidmap, gidmap []specs.LinuxIDMapping
+	for _, m := range mappings.UIDs() {
+		uidmap = append(uidmap, specs.LinuxIDMapping{
+			ContainerID: uint32(m.ContainerID),
+			HostID:      uint32(m.HostID),
+			Size:        uint32(m.Size),
+		})
+	}
+	for _, m := range mappings.GIDs() {
+		gidmap = append(gidmap, specs.LinuxIDMapping{
+			ContainerID: uint32(m.ContainerID),
+			HostID:      uint32(m.HostID),
+			Size:        uint32(m.Size),
+		})
+	}
+	return uidmap, gidmap, nil
+}
+
+// ParseIDMappings parses mapping triples.
+func ParseIDMappings(uidmap, gidmap []string) ([]idtools.IDMap, []idtools.IDMap, error) {
+	uid, err := idtools.ParseIDMap(uidmap, "userns-uid-map")
+	if err != nil {
+		return nil, nil, err
+	}
+	gid, err := idtools.ParseIDMap(gidmap, "userns-gid-map")
+	if err != nil {
+		return nil, nil, err
+	}
+	return uid, gid, nil
 }

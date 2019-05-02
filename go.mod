@@ -19,7 +19,7 @@ require (
 	github.com/containerd/typeurl v0.0.0-20180627222232-a93fcdb778cd // indirect
 	github.com/containernetworking/cni v0.7.0-rc2
 	github.com/containernetworking/plugins v0.7.5
-	github.com/containers/buildah v1.7.2
+	github.com/containers/buildah v1.8.0
 	github.com/containers/image v1.5.1
 	github.com/containers/libpod v1.2.0
 	github.com/containers/psgo v0.0.0-20180822121435-5dde6da0bc88 // indirect
@@ -52,6 +52,7 @@ require (
 	github.com/hashicorp/go-multierror v0.0.0-20170622060955-83588e72410a // indirect
 	github.com/hashicorp/go-version v1.1.0 // indirect
 	github.com/hpcloud/tail v1.0.0
+	github.com/ishidawataru/sctp v0.0.0-20180918013207-6e2cb1366111 // indirect
 	github.com/klauspost/compress v1.4.1 // indirect
 	github.com/klauspost/cpuid v1.2.0 // indirect
 	github.com/klauspost/pgzip v1.2.1 // indirect
