@@ -3,7 +3,7 @@ go 1.12
 require (
 	github.com/14rcole/gopopulate v0.0.0-20180821133914-b175b219e774 // indirect
 	github.com/BurntSushi/toml v0.3.1
-	github.com/Microsoft/go-winio v0.4.11
+	github.com/Microsoft/go-winio v0.4.12
 	github.com/Microsoft/hcsshim v0.6.2 // indirect
 	github.com/VividCortex/ewma v1.1.1 // indirect
 	github.com/blang/semver v3.5.0+incompatible // indirect
