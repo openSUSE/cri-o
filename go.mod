@@ -70,7 +70,7 @@ require (
 	github.com/opencontainers/runc v1.0.0-rc8
 	github.com/opencontainers/runtime-spec v0.1.2-0.20190408193819-a1b50f621a48
 	github.com/opencontainers/runtime-tools v0.3.1-0.20190418135848-095789df6c2b
-	github.com/opencontainers/selinux v1.2.1
+	github.com/opencontainers/selinux v1.2.2
 	github.com/openshift/imagebuilder v0.0.0-20190308124740-705fe9255c57 // indirect
 	github.com/opentracing/opentracing-go v0.0.0-20190218023034-25a84ff92183 // indirect
 	github.com/ostreedev/ostree-go v0.0.0-20181213164143-d0388bd827cf // indirect
