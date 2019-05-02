@@ -1089,7 +1089,7 @@ k8s.io/cloud-provider/features
 k8s.io/klog
 # k8s.io/kube-openapi v0.0.0-20190306001800-15615b16d372
 k8s.io/kube-openapi/pkg/util/proto
-# k8s.io/kubernetes v1.14.0
+# k8s.io/kubernetes v1.14.1
 k8s.io/kubernetes/pkg/kubelet/apis/cri/runtime/v1alpha2
 k8s.io/kubernetes/pkg/kubelet/dockershim/network/hostport
 k8s.io/kubernetes/pkg/kubelet/container
