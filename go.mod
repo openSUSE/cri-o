@@ -97,7 +97,7 @@ require (
 	golang.org/x/sync v0.0.0-20190227155943-e225da77a7e6
 	golang.org/x/sys v0.0.0-20190410235845-0ad05ae3009d
 	golang.org/x/text v0.3.1-0.20190410012825-f4905fbd45b6
-	google.golang.org/grpc v1.20.0
+	google.golang.org/grpc v1.20.1
 	k8s.io/api v0.0.0-20190409092523-d687e77c8ae9
 	k8s.io/apiextensions-apiserver v0.0.0-20190409093611-d42ba5c63e88 // indirect
 	k8s.io/apimachinery v0.0.0-20190409092423-760d1845f48b
