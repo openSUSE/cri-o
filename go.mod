@@ -17,7 +17,7 @@ require (
 	github.com/containerd/ttrpc v0.0.0-20180920185216-2a805f718635
 	github.com/containernetworking/cni v0.7.0
 	github.com/containernetworking/plugins v0.7.5
-	github.com/containers/buildah v1.7.2
+	github.com/containers/buildah v1.8.2
 	github.com/containers/image v1.5.1
 	github.com/containers/libpod v1.3.0
 	github.com/containers/psgo v0.0.0-20180822121435-5dde6da0bc88 // indirect
