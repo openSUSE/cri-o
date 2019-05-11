@@ -7,7 +7,9 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"path"
 	"path/filepath"
+	"runtime"
 	"sync"
 
 	"github.com/containernetworking/plugins/pkg/ns"
@@ -28,7 +30,7 @@ func (n *NetNs) Initialized() bool {
 
 // Initialize does the necessary setup for a NetNs
 func (n *NetNs) Initialize() (NetNsIface, error) {
-	netNS, err := ns.NewNS()
+	netNS, err := NewNS()
 	if err != nil {
 		return nil, err
 	}
@@ -38,8 +40,8 @@ func (n *NetNs) Initialize() (NetNsIface, error) {
 	return n, nil
 }
 
-func getNetNs(path string) (*NetNs, error) {
-	netNS, err := ns.GetNS(path)
+func getNetNs(nsPath string) (*NetNs, error) {
+	netNS, err := ns.GetNS(nsPath)
 	if err != nil {
 		return nil, err
 	}
@@ -171,4 +173,112 @@ func hostNetNsPath() (string, error) {
 
 	defer netNS.Close()
 	return netNS.Path(), nil
+}
+
+// NewNS creates a new persistent (bind-mounted) network namespace and returns
+// an object representing that namespace, without switching to it.
+func NewNS() (ns.NetNS, error) {
+	b := make([]byte, 16)
+	_, err := rand.Reader.Read(b)
+	if err != nil {
+		return nil, fmt.Errorf("failed to generate random netns name: %v", err)
+	}
+
+	// Create the directory for mounting network namespaces This needs to be a
+	// shared mountpoint in case it is mounted in to other namespaces.
+	err = os.MkdirAll(NsRunDir, 0755)
+	if err != nil {
+		return nil, err
+	}
+
+	// Remount the namespace directory shared. This will fail if it is not
+	// already a mountpoint, so bind-mount it on to itself to "upgrade" it to a
+	// mountpoint.
+	err = unix.Mount("", NsRunDir, "none", unix.MS_SHARED|unix.MS_REC, "")
+	if err != nil {
+		if err != unix.EINVAL {
+			return nil, fmt.Errorf("mount --make-rshared %s failed: %q", NsRunDir, err)
+		}
+
+		// Recursively remount /var/run/netns on itself. The recursive flag is
+		// so that any existing netns bindmounts are carried over.
+		err = unix.Mount(NsRunDir, NsRunDir, "none", unix.MS_BIND|unix.MS_REC, "")
+		if err != nil {
+			return nil, fmt.Errorf("mount --rbind %s %s failed: %q", NsRunDir, NsRunDir, err)
+		}
+
+		// Now we can make it shared
+		err = unix.Mount("", NsRunDir, "none", unix.MS_SHARED|unix.MS_REC, "")
+		if err != nil {
+			return nil, fmt.Errorf("mount --make-rshared %s failed: %q", NsRunDir, err)
+		}
+
+	}
+
+	nsName := fmt.Sprintf("cni-%x-%x-%x-%x-%x", b[0:4], b[4:6], b[6:8], b[8:10], b[10:])
+
+	// create an empty file at the mount point
+	nsPath := path.Join(NsRunDir, nsName)
+	mountPointFd, err := os.Create(nsPath)
+	if err != nil {
+		return nil, err
+	}
+	mountPointFd.Close()
+
+	// Ensure the mount point is cleaned up on errors; if the namespace
+	// was successfully mounted this will have no effect because the file
+	// is in-use
+	defer os.RemoveAll(nsPath)
+
+	var wg sync.WaitGroup
+	wg.Add(1)
+
+	// do namespace work in a dedicated goroutine, so that we can safely
+	// Lock/Unlock OSThread without upsetting the lock/unlock state of
+	// the caller of this function
+	go (func() {
+		defer wg.Done()
+		runtime.LockOSThread()
+		// Don't unlock. By not unlocking, golang will kill the OS thread when
+		// the goroutine is done (for go1.10+)
+
+		var origNS ns.NetNS
+		origNS, err = ns.GetNS(getCurrentThreadNetNSPath())
+		if err != nil {
+			return
+		}
+		defer origNS.Close()
+
+		// create a new netns on the current thread
+		err = unix.Unshare(unix.CLONE_NEWNET)
+		if err != nil {
+			return
+		}
+
+		// Put this thread back to the orig ns, since it might get reused (pre
+		// go1.10)
+		defer origNS.Set()
+
+		// bind mount the netns from the current thread (from /proc) onto the
+		// mount point. This causes the namespace to persist, even when there
+		// are no threads in the ns.
+		err = unix.Mount(getCurrentThreadNetNSPath(), nsPath, "none", unix.MS_BIND, "")
+		if err != nil {
+			err = fmt.Errorf("failed to bind mount ns at %s: %v", nsPath, err)
+		}
+	})()
+	wg.Wait()
+
+	if err != nil {
+		return nil, fmt.Errorf("failed to create namespace: %v", err)
+	}
+
+	return ns.GetNS(nsPath)
+}
+
+func getCurrentThreadNetNSPath() string {
+	// /proc/self/ns/net returns the namespace of the main thread, not
+	// of whatever thread this goroutine is running on.  Make sure we
+	// use the thread's net namespace since the thread is switching around
+	return fmt.Sprintf("/proc/%d/task/%d/ns/net", os.Getpid(), unix.Gettid())
 }
