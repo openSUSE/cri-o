@@ -73,7 +73,7 @@ require (
 	github.com/prometheus/client_golang v0.9.3
 	github.com/seccomp/containers-golang v0.0.0-20180629143253-cdfdaa7543f4 // indirect
 	github.com/seccomp/libseccomp-golang v0.9.0
-	github.com/sirupsen/logrus v1.4.1
+	github.com/sirupsen/logrus v1.4.2
 	github.com/soheilhy/cmux v0.1.4
 	github.com/syndtr/gocapability v0.0.0-20160928074757-e7cb7fa329f4
 	github.com/tchap/go-patricia v2.2.6+incompatible // indirect
