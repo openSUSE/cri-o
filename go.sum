@@ -364,6 +364,8 @@ github.com/hashicorp/go-multierror v0.0.0-20170622060955-83588e72410a h1:RUacJnO
 github.com/hashicorp/go-multierror v0.0.0-20170622060955-83588e72410a/go.mod h1:JMRHfdO9jKNzS/+BTlxCjKNQHg/jZAft8U7LloJvN7I=
 github.com/hashicorp/go-version v1.1.0 h1:bPIoEKD27tNdebFGGxxYwcL4nepeY4j1QP23PFRGzg0=
 github.com/hashicorp/go-version v1.1.0/go.mod h1:fltr4n8CU8Ke44wwGCBoEymUuxUHl09ZGVZPK5anwXA=
+github.com/hashicorp/go-version v1.2.0 h1:3vNe/fWF5CBgRIguda1meWhsZHy3m8gCJ5wx+dIzX/E=
+github.com/hashicorp/go-version v1.2.0/go.mod h1:fltr4n8CU8Ke44wwGCBoEymUuxUHl09ZGVZPK5anwXA=
 github.com/hashicorp/golang-lru v0.5.0 h1:CL2msUPvZTLb5O648aiLNJw3hnBxN2+1Jq8rCOH9wdo=
 github.com/hashicorp/golang-lru v0.5.0/go.mod h1:/m3WP610KZHVQ1SGc6re/UDhFvYD7pJ4Ao+sR/qLZy8=
 github.com/hashicorp/hcl v0.0.0-20160711231752-d8c773c4cba1/go.mod h1:oZtUIOe8dh44I2q6ScRibXws4Ajl+d+nod3AaR9vL5w=
@@ -647,6 +649,8 @@ github.com/urfave/cli v1.20.0/go.mod h1:70zkFmudgCuE/ngEzBv17Jvp/497gISqfk5gWijb
 github.com/urfave/negroni v1.0.0/go.mod h1:Meg73S6kFm/4PpbYdq35yYWoCZ9mS/YSx+lKnmiohz4=
 github.com/vbatts/git-validation v0.0.0-20181108135710-7b29366a0dd3 h1:4KCZqBgnVVEnjKWmdkKUZKfZoBJk7LUKGaSo4QM0mp4=
 github.com/vbatts/git-validation v0.0.0-20181108135710-7b29366a0dd3/go.mod h1:WwXoWJRJIn+iAlwAdZFona6qcR/WW6fecCR3B9zybPE=
+github.com/vbatts/git-validation v1.0.0 h1:Eb7bD3ThOk/2P01M+KaUng0gka9+MVvpn6d0a6AKxq0=
+github.com/vbatts/git-validation v1.0.0/go.mod h1:QyK3uQnRYWGt/5ezd8kcpwPrm6zn9tNM/KtozbpfU6k=
 github.com/vbatts/tar-split v0.11.1 h1:0Odu65rhcZ3JZaPHxl7tCI3V/C/Q9Zf82UFravl02dE=
 github.com/vbatts/tar-split v0.11.1/go.mod h1:LEuURwDEiWjRjwu46yU3KVGuUdVv/dcnpcEPSzR8z6g=
 github.com/vbauerster/mpb v3.4.0+incompatible h1:mfiiYw87ARaeRW6x5gWwYRUawxaW1tLAD8IceomUCNw=
