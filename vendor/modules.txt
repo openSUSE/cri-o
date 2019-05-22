@@ -668,7 +668,7 @@ github.com/ulikunitz/xz/lzma
 github.com/ulikunitz/xz/internal/hash
 # github.com/urfave/cli v1.20.0
 github.com/urfave/cli
-# github.com/vbatts/git-validation v0.0.0-20181108135710-7b29366a0dd3
+# github.com/vbatts/git-validation v1.0.0
 github.com/vbatts/git-validation
 github.com/vbatts/git-validation/rules/danglingwhitespace
 github.com/vbatts/git-validation/rules/dco
