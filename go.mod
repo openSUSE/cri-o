@@ -18,7 +18,7 @@ require (
 	github.com/containernetworking/plugins v0.8.0
 	github.com/containers/buildah v1.7.2
 	github.com/containers/image v1.5.1
-	github.com/containers/libpod v1.3.1
+	github.com/containers/libpod v1.3.2
 	github.com/containers/psgo v1.2.1 // indirect
 	github.com/containers/storage v1.12.7
 	github.com/coreos/go-iptables v0.4.1 // indirect
