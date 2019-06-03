@@ -20,7 +20,7 @@ require (
 	github.com/containers/image v1.5.1
 	github.com/containers/libpod v1.3.2
 	github.com/containers/psgo v1.2.1 // indirect
-	github.com/containers/storage v1.12.7
+	github.com/containers/storage v1.12.8
 	github.com/coreos/go-iptables v0.4.1 // indirect
 	github.com/coreos/go-systemd v0.0.0-20180511133405-39ca1b05acc7
 	github.com/cpuguy83/go-md2man v1.0.10
