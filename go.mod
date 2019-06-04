@@ -16,7 +16,7 @@ require (
 	github.com/containerd/ttrpc v0.0.0-20180920185216-2a805f718635
 	github.com/containernetworking/cni v0.7.0
 	github.com/containernetworking/plugins v0.8.0
-	github.com/containers/buildah v1.7.2
+	github.com/containers/buildah v1.8.3
 	github.com/containers/image v1.5.1
 	github.com/containers/libpod v1.3.2
 	github.com/containers/psgo v1.2.1 // indirect
@@ -38,6 +38,7 @@ require (
 	github.com/golangci/golangci-lint v1.16.1-0.20190402065613-de1d1ad903cd
 	github.com/hashicorp/go-multierror v1.0.0 // indirect
 	github.com/hpcloud/tail v1.0.0
+	github.com/ishidawataru/sctp v0.0.0-20180918013207-6e2cb1366111 // indirect
 	github.com/klauspost/compress v1.5.0 // indirect
 	github.com/klauspost/cpuid v1.2.1 // indirect
 	github.com/klauspost/pgzip v1.2.1 // indirect
