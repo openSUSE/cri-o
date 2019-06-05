@@ -813,7 +813,7 @@ google.golang.org/appengine/internal/log
 google.golang.org/appengine/internal/remote_api
 # google.golang.org/genproto v0.0.0-20190516172635-bb713bdc0e52
 google.golang.org/genproto/googleapis/rpc/status
-# google.golang.org/grpc v1.20.1
+# google.golang.org/grpc v1.21.1
 google.golang.org/grpc
 google.golang.org/grpc/codes
 google.golang.org/grpc/status
