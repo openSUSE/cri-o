@@ -17,7 +17,6 @@ import (
 	"github.com/opencontainers/selinux/go-selinux/label"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
-	kwait "k8s.io/apimachinery/pkg/util/wait"
 
 	// TODO import these functions into libpod and remove the import
 	// Trying to keep libpod from depending on CRI-O code
@@ -261,21 +260,13 @@ func (r *OCIRuntime) updateContainerStatus(ctr *Container, useRuntime bool) erro
 	// If we were, it should already be in the database
 	if ctr.state.State == ContainerStateStopped && oldState != ContainerStateStopped {
 		var fi os.FileInfo
-		err = kwait.ExponentialBackoff(
-			kwait.Backoff{
-				Duration: 500 * time.Millisecond,
-				Factor:   1.2,
-				Steps:    6,
-			},
-			func() (bool, error) {
-				var err error
-				fi, err = os.Stat(exitFile)
-				if err != nil {
-					// wait longer
-					return false, nil
-				}
-				return true, nil
-			})
+		chWait := make(chan error)
+		defer close(chWait)
+
+		_, err := WaitForFile(exitFile, chWait, time.Second*5)
+		if err == nil {
+			fi, err = os.Stat(exitFile)
+		}
 		if err != nil {
 			ctr.state.ExitCode = -1
 			ctr.state.FinishedTime = time.Now()
@@ -376,8 +367,6 @@ func (r *OCIRuntime) execContainer(c *Container, cmd, capAdd, env []string, tty 
 	args := []string{}
 
 	// TODO - should we maintain separate logpaths for exec sessions?
-	args = append(args, "--log", c.LogPath())
-
 	args = append(args, "exec")
 
 	if cwd != "" {
@@ -411,7 +400,7 @@ func (r *OCIRuntime) execContainer(c *Container, cmd, capAdd, env []string, tty 
 		args = append(args, "--env", envVar)
 	}
 
-	// Append container ID and command
+	// Append container ID, name and command
 	args = append(args, c.ID())
 	args = append(args, cmd...)
 

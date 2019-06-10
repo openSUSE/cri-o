@@ -89,6 +89,8 @@ github.com/containers/image v1.5.1 h1:ssEuj1c24uJvdMkUa2IrawuEFZBP12p6WzrjNBTQxE
 github.com/containers/image v1.5.1/go.mod h1:8Vtij257IWSanUQKe1tAeNOm2sRVkSqQTVQ1IlwI3+M=
 github.com/containers/libpod v1.3.2 h1:ccSEoyEmnDSfvq2A3FgvI8LS0SjGZbS9oMa26zizzLY=
 github.com/containers/libpod v1.3.2/go.mod h1:KkaKUNtjfQIm83bee5nnVvfcWUImCPUHjoUrQMvIlII=
+github.com/containers/libpod v1.4.0 h1:iLZb4IZYO0g8Du4wooV1950kvFjk8j3PTfN2LEZ4Mv8=
+github.com/containers/libpod v1.4.0/go.mod h1:KkaKUNtjfQIm83bee5nnVvfcWUImCPUHjoUrQMvIlII=
 github.com/containers/psgo v1.2.1 h1:nKpO4UMCtbiwbWQgPmCF8RuXH+tfL+B0szW3Gt12j1U=
 github.com/containers/psgo v1.2.1/go.mod h1:7MELvPTW1fj6yMrwD9I1Iasx1vU+hKlRkHXAJ51sFtU=
 github.com/containers/storage v1.12.7 h1:k6dbG8Gf0/W+V2F66OQkC/JvDh0lDt9XmFKK736Xnkw=
@@ -155,6 +157,8 @@ github.com/elazarl/goproxy v0.0.0-20170405201442-c4fc26588b6e h1:p1yVGRW3nmb85p1
 github.com/elazarl/goproxy v0.0.0-20170405201442-c4fc26588b6e/go.mod h1:/Zj4wYkgs4iZTTu3o/KG3Itv/qCCa8VVMlb3i9OVuzc=
 github.com/emicklei/go-restful v0.0.0-20170410110728-ff4f55a20633 h1:H2pdYOb3KQ1/YsqVWoWNLQO+fusocsw354rqGTZtAgw=
 github.com/emicklei/go-restful v0.0.0-20170410110728-ff4f55a20633/go.mod h1:otzb+WCGbkyDHkqmQmT5YD2WR4BBwUdeQoFo8l/7tVs=
+github.com/etcd-io/bbolt v1.3.3 h1:gSJmxrs37LgTqR/oyJBWok6k6SvXEUerFTbltIhXkBM=
+github.com/etcd-io/bbolt v1.3.3/go.mod h1:ZF2nL25h33cCyBtcyWeZ2/I3HQOfTP+0PIEvHjkjCrw=
 github.com/euank/go-kmsg-parser v2.0.0+incompatible/go.mod h1:MhmAMZ8V4CYH4ybgdRwPr2TU5ThnS43puaKEMpja1uw=
 github.com/evanphx/json-patch v0.0.0-20190203023257-5858425f7550 h1:mV9jbLoSW/8m4VK16ZkHTozJa8sesK5u5kTMFysTYac=
 github.com/evanphx/json-patch v0.0.0-20190203023257-5858425f7550/go.mod h1:50XU6AFN0ol/bzJsmQLiYLvXMP4fmwYFNcr97nuDLSk=

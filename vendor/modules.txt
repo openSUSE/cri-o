@@ -121,7 +121,7 @@ github.com/containers/image/pkg/docker/config
 github.com/containers/image/pkg/tlsclientconfig
 github.com/containers/image/docker/tarfile
 github.com/containers/image/oci/internal
-# github.com/containers/libpod v1.3.2
+# github.com/containers/libpod v1.4.0
 github.com/containers/libpod/pkg/hooks/0.1.0
 github.com/containers/libpod/pkg/hooks
 github.com/containers/libpod/pkg/registrar
@@ -206,8 +206,8 @@ github.com/coreos/go-systemd/daemon
 github.com/coreos/go-systemd/dbus
 github.com/coreos/go-systemd/util
 github.com/coreos/go-systemd/activation
-github.com/coreos/go-systemd/journal
 github.com/coreos/go-systemd/sdjournal
+github.com/coreos/go-systemd/journal
 # github.com/coreos/pkg v0.0.0-20180108230652-97fdf19511ea
 github.com/coreos/pkg/dlopen
 # github.com/cpuguy83/go-md2man v1.0.10
@@ -288,6 +288,8 @@ github.com/docker/spdystream/spdy
 # github.com/emicklei/go-restful v0.0.0-20170410110728-ff4f55a20633
 github.com/emicklei/go-restful
 github.com/emicklei/go-restful/log
+# github.com/etcd-io/bbolt v1.3.3
+github.com/etcd-io/bbolt
 # github.com/fatih/color v1.6.0
 github.com/fatih/color
 # github.com/fsnotify/fsnotify v1.4.7

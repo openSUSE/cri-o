@@ -19,7 +19,7 @@ require (
 	github.com/containernetworking/plugins v0.8.1
 	github.com/containers/buildah v1.7.2
 	github.com/containers/image v1.5.1
-	github.com/containers/libpod v1.3.2
+	github.com/containers/libpod v1.4.0
 	github.com/containers/psgo v1.2.1 // indirect
 	github.com/containers/storage v1.12.10
 	github.com/coreos/go-iptables v0.4.1 // indirect
@@ -33,6 +33,7 @@ require (
 	github.com/docker/go-metrics v0.0.0-20181218153428-b84716841b82 // indirect
 	github.com/docker/go-units v0.4.0
 	github.com/docker/libtrust v0.0.0-20160708172513-aabc10ec26b7 // indirect
+	github.com/etcd-io/bbolt v1.3.3 // indirect
 	github.com/fsnotify/fsnotify v1.4.7
 	github.com/fsouza/go-dockerclient v1.4.0 // indirect
 	github.com/go-zoo/bone v1.3.0
