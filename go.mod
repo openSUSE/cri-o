@@ -7,7 +7,7 @@ require (
 	github.com/BurntSushi/toml v0.3.1
 	github.com/Microsoft/go-winio v0.4.12
 	github.com/VividCortex/ewma v1.1.1 // indirect
-	github.com/blang/semver v3.5.0+incompatible
+	github.com/blang/semver v3.5.1+incompatible
 	github.com/checkpoint-restore/go-criu v0.0.0-20190109184317-bdb7599cd87b // indirect
 	github.com/containerd/cgroups v0.0.0-20180515175038-5e610833b720
 	github.com/containerd/containerd v1.2.7

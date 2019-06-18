@@ -29,7 +29,7 @@ github.com/OpenPeeDeeP/depguard
 github.com/VividCortex/ewma
 # github.com/beorn7/perks v1.0.0
 github.com/beorn7/perks/quantile
-# github.com/blang/semver v3.5.0+incompatible
+# github.com/blang/semver v3.5.1+incompatible
 github.com/blang/semver
 # github.com/checkpoint-restore/go-criu v0.0.0-20190109184317-bdb7599cd87b
 github.com/checkpoint-restore/go-criu/rpc
