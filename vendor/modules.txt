@@ -120,7 +120,7 @@ github.com/containers/image/pkg/tlsclientconfig
 github.com/containers/image/docker/tarfile
 github.com/containers/image/oci/internal
 github.com/containers/image/pkg/sysregistries
-# github.com/containers/libpod v1.4.1
+# github.com/containers/libpod v1.4.2
 github.com/containers/libpod/pkg/hooks/0.1.0
 github.com/containers/libpod/pkg/hooks
 github.com/containers/libpod/pkg/registrar
