@@ -112,6 +112,8 @@ github.com/containers/libpod v1.4.0-0.20190614192453-4a450d55d95f/go.mod h1:KkaK
 github.com/containers/libpod v1.4.0 h1:iLZb4IZYO0g8Du4wooV1950kvFjk8j3PTfN2LEZ4Mv8=
 github.com/containers/libpod v1.4.1 h1:V14YAS1Nw3hnDUoeQRA+kGO5MWrGAfW46UfPmoelm6w=
 github.com/containers/libpod v1.4.1/go.mod h1:KkaKUNtjfQIm83bee5nnVvfcWUImCPUHjoUrQMvIlII=
+github.com/containers/libpod v1.4.2 h1:4ZkinyMwtatmHaE7kdQCH/oJMha2qcl3HwQUdSCbsBE=
+github.com/containers/libpod v1.4.2/go.mod h1:KkaKUNtjfQIm83bee5nnVvfcWUImCPUHjoUrQMvIlII=
 github.com/containers/psgo v1.2.1 h1:nKpO4UMCtbiwbWQgPmCF8RuXH+tfL+B0szW3Gt12j1U=
 github.com/containers/psgo v1.2.1/go.mod h1:7MELvPTW1fj6yMrwD9I1Iasx1vU+hKlRkHXAJ51sFtU=
 github.com/containers/psgo v1.3.0 h1:kDhiA4gNNyJ2qCzmOuBf6AmrF/Pp+6Jo98P68R7fB8I=
