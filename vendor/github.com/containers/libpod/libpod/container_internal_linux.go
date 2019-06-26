@@ -541,7 +541,7 @@ func (c *Container) checkpointRestoreSupported() (err error) {
 	if !criu.CheckForCriu() {
 		return errors.Errorf("Checkpoint/Restore requires at least CRIU %d", criu.MinCriuVersion)
 	}
-	if !c.runtime.ociRuntime.featureCheckCheckpointing() {
+	if !c.ociRuntime.featureCheckCheckpointing() {
 		return errors.Errorf("Configured runtime does not support checkpoint/restore")
 	}
 	return nil
@@ -575,7 +575,7 @@ func (c *Container) checkpoint(ctx context.Context, options ContainerCheckpointO
 		return err
 	}
 
-	if err := c.runtime.ociRuntime.checkpointContainer(c, options); err != nil {
+	if err := c.ociRuntime.checkpointContainer(c, options); err != nil {
 		return err
 	}
 
@@ -769,7 +769,7 @@ func (c *Container) restore(ctx context.Context, options ContainerCheckpointOpti
 	if err := c.saveSpec(g.Spec()); err != nil {
 		return err
 	}
-	if err := c.runtime.ociRuntime.createContainer(c, c.config.CgroupParent, &options); err != nil {
+	if err := c.ociRuntime.createContainer(c, c.config.CgroupParent, &options); err != nil {
 		return err
 	}
 
@@ -1068,6 +1068,10 @@ func (c *Container) getHosts() string {
 			fields := strings.SplitN(host, ":", 2)
 			hosts += fmt.Sprintf("%s %s\n", fields[1], fields[0])
 		}
+	}
+	if c.config.NetMode.IsSlirp4netns() {
+		// When using slirp4netns, the interface gets a static IP
+		hosts += fmt.Sprintf("# used by slirp4netns\n%s\t%s\n", "10.0.2.100", c.Hostname())
 	}
 	if len(c.state.NetworkStatus) > 0 && len(c.state.NetworkStatus[0].IPs) > 0 {
 		ipAddress := strings.Split(c.state.NetworkStatus[0].IPs[0].Address.String(), "/")[0]
