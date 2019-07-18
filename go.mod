@@ -14,7 +14,7 @@ require (
 	github.com/containernetworking/cni v0.7.1
 	github.com/containernetworking/plugins v0.8.1
 	github.com/containers/buildah v1.9.1
-	github.com/containers/image v2.0.0+incompatible
+	github.com/containers/image v2.0.1+incompatible
 	github.com/containers/libpod v1.4.4
 	github.com/containers/storage v1.12.13
 	github.com/coreos/go-systemd v0.0.0-20190620071333-e64a0ec8b42a
