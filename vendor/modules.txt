@@ -5,8 +5,9 @@ github.com/Azure/go-ansiterm
 github.com/BurntSushi/toml
 # github.com/DataDog/zstd v1.4.0
 github.com/DataDog/zstd
-# github.com/Microsoft/go-winio v0.4.12
+# github.com/Microsoft/go-winio v0.4.13
 github.com/Microsoft/go-winio
+github.com/Microsoft/go-winio/pkg/guid
 github.com/Microsoft/go-winio/archive/tar
 github.com/Microsoft/go-winio/backuptar
 # github.com/Microsoft/hcsshim v0.8.6
