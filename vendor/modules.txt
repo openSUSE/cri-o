@@ -3,8 +3,6 @@ github.com/Azure/go-ansiterm/winterm
 github.com/Azure/go-ansiterm
 # github.com/BurntSushi/toml v0.3.1
 github.com/BurntSushi/toml
-# github.com/DataDog/zstd v1.4.0
-github.com/DataDog/zstd
 # github.com/Microsoft/go-winio v0.4.13
 github.com/Microsoft/go-winio
 github.com/Microsoft/go-winio/pkg/guid
@@ -165,12 +163,13 @@ github.com/containers/psgo/internal/dev
 github.com/containers/psgo/internal/proc
 github.com/containers/psgo/internal/process
 github.com/containers/psgo/internal/host
-# github.com/containers/storage v1.12.13
+# github.com/containers/storage v1.12.14
 github.com/containers/storage/pkg/reexec
 github.com/containers/storage
 github.com/containers/storage/pkg/idtools
 github.com/containers/storage/drivers
 github.com/containers/storage/pkg/archive
+github.com/containers/storage/pkg/lockfile
 github.com/containers/storage/drivers/register
 github.com/containers/storage/pkg/config
 github.com/containers/storage/pkg/directory
@@ -179,6 +178,7 @@ github.com/containers/storage/pkg/parsers
 github.com/containers/storage/pkg/stringid
 github.com/containers/storage/pkg/stringutils
 github.com/containers/storage/pkg/system
+github.com/containers/storage/pkg/tarlog
 github.com/containers/storage/pkg/truncindex
 github.com/containers/storage/pkg/mount
 github.com/containers/storage/pkg/homedir
@@ -504,8 +504,13 @@ github.com/json-iterator/go
 # github.com/kisielk/gotool v1.0.0
 github.com/kisielk/gotool
 github.com/kisielk/gotool/internal/load
-# github.com/klauspost/compress v1.7.1
+# github.com/klauspost/compress v1.7.2
+github.com/klauspost/compress/zstd
 github.com/klauspost/compress/flate
+github.com/klauspost/compress/huff0
+github.com/klauspost/compress/snappy
+github.com/klauspost/compress/zstd/internal/xxhash
+github.com/klauspost/compress/fse
 # github.com/klauspost/cpuid v1.2.1
 github.com/klauspost/cpuid
 # github.com/klauspost/pgzip v1.2.1
@@ -633,7 +638,7 @@ github.com/openshift/imagebuilder/strslice
 # github.com/opentracing/opentracing-go v1.1.0
 github.com/opentracing/opentracing-go
 github.com/opentracing/opentracing-go/log
-# github.com/ostreedev/ostree-go v0.0.0-20181213164143-d0388bd827cf
+# github.com/ostreedev/ostree-go v0.0.0-20190702140239-759a8c1ac913
 github.com/ostreedev/ostree-go/pkg/glibobject
 github.com/ostreedev/ostree-go/pkg/otbuiltin
 # github.com/pelletier/go-toml v1.4.0
