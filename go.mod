@@ -41,7 +41,7 @@ require (
 	github.com/opencontainers/runtime-tools v0.9.0
 	github.com/opencontainers/selinux v1.2.2
 	github.com/pkg/errors v0.8.1
-	github.com/prometheus/client_golang v1.0.0
+	github.com/prometheus/client_golang v1.1.0
 	github.com/seccomp/containers-golang v0.3.1
 	github.com/sirupsen/logrus v1.4.2
 	github.com/soheilhy/cmux v0.1.4
@@ -50,7 +50,7 @@ require (
 	github.com/vbatts/git-validation v1.0.0
 	golang.org/x/net v0.0.0-20190628185345-da137c7871d7
 	golang.org/x/sync v0.0.0-20190423024810-112230192c58
-	golang.org/x/sys v0.0.0-20190626221950-04f50cda93cb
+	golang.org/x/sys v0.0.0-20190801041406-cbf593c0f2f3
 	google.golang.org/grpc v1.22.1
 	k8s.io/api v0.0.0
 	k8s.io/apimachinery v0.0.0
