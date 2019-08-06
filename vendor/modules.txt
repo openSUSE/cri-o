@@ -163,7 +163,7 @@ github.com/containers/psgo/internal/dev
 github.com/containers/psgo/internal/proc
 github.com/containers/psgo/internal/process
 github.com/containers/psgo/internal/host
-# github.com/containers/storage v1.12.16
+# github.com/containers/storage v1.13.0
 github.com/containers/storage/pkg/reexec
 github.com/containers/storage
 github.com/containers/storage/pkg/idtools
@@ -649,6 +649,8 @@ github.com/pkg/errors
 github.com/pmezard/go-difflib/difflib
 # github.com/pquerna/ffjson v0.0.0-20181028064349-e517b90714f7
 github.com/pquerna/ffjson/fflib/v1
+github.com/pquerna/ffjson/inception
+github.com/pquerna/ffjson/shared
 github.com/pquerna/ffjson/fflib/v1/internal
 # github.com/prometheus/client_golang v1.1.0
 github.com/prometheus/client_golang/prometheus/promhttp
@@ -710,9 +712,9 @@ github.com/vbatts/git-validation/rules/shortsubject
 github.com/vbatts/git-validation/validate
 github.com/vbatts/git-validation/git
 # github.com/vbatts/tar-split v0.11.1
+github.com/vbatts/tar-split/archive/tar
 github.com/vbatts/tar-split/tar/asm
 github.com/vbatts/tar-split/tar/storage
-github.com/vbatts/tar-split/archive/tar
 # github.com/vbauerster/mpb v3.4.0+incompatible
 github.com/vbauerster/mpb
 github.com/vbauerster/mpb/decor
