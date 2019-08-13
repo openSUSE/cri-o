@@ -39,7 +39,7 @@ require (
 	github.com/opencontainers/runc v1.0.0-rc8
 	github.com/opencontainers/runtime-spec v1.0.1
 	github.com/opencontainers/runtime-tools v0.9.0
-	github.com/opencontainers/selinux v1.2.2
+	github.com/opencontainers/selinux v1.3.0
 	github.com/pkg/errors v0.8.1
 	github.com/prometheus/client_golang v1.1.0
 	github.com/seccomp/containers-golang v0.3.1
