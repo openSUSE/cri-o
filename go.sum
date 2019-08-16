@@ -148,6 +148,8 @@ github.com/containers/libpod v1.4.4 h1:ImfKNDgs1WLyJ8zhcBBhiXhb2mVRgPzP58nSsC1ai
 github.com/containers/libpod v1.4.4/go.mod h1:ZdYOq3W7RqABw6T6luVSWfS5GBXKQ1KzWPL1n8vjVhI=
 github.com/containers/libpod v1.5.0 h1:1wpfO0OjapF3ZRP5V1AO3EEiEumrA2XoeqO3rWp2Ijw=
 github.com/containers/libpod v1.5.0/go.mod h1:S5TOYh/q+DFAsTeGH0gUS3kYr9MLD2HUC9umQpwwSCk=
+github.com/containers/libpod v1.5.1 h1:Msp7bvAmNOeVfo8RW2QcRrcCCMYMBVHq6mWok97xq5c=
+github.com/containers/libpod v1.5.1/go.mod h1:S5TOYh/q+DFAsTeGH0gUS3kYr9MLD2HUC9umQpwwSCk=
 github.com/containers/psgo v1.3.0 h1:kDhiA4gNNyJ2qCzmOuBf6AmrF/Pp+6Jo98P68R7fB8I=
 github.com/containers/psgo v1.3.0/go.mod h1:7MELvPTW1fj6yMrwD9I1Iasx1vU+hKlRkHXAJ51sFtU=
 github.com/containers/psgo v1.3.1 h1:1kE+jJ9Ou5f9zQT/M2IdeSclsKWsXrSFlOcnqc+F2TA=
