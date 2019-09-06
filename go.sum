@@ -130,6 +130,8 @@ github.com/containers/buildah v1.10.0 h1:V7c9Nc2K+YxWUMUvkCWtaVxWO8YjIvHhzcFxaVM
 github.com/containers/buildah v1.10.0/go.mod h1:TriEK5llnDkeiozHQ0Lp8PLJdRRGYbLzB+CkwiaR+xk=
 github.com/containers/buildah v1.10.1 h1:YBFHZkpbWCxUR/gjRAZrRzs2E0DfdUe3+/8OA9filWY=
 github.com/containers/buildah v1.10.1/go.mod h1:ZTyMFo3IQlu9tYndtnAf0Tjf2NdeUL6bY2/TpP9uIuU=
+github.com/containers/buildah v1.11.0 h1:w0jZybDBTb5lvBKmFuuncxbb3D+D68EHnngIcAXFKjg=
+github.com/containers/buildah v1.11.0/go.mod h1:vIO922hCyTe9LEUlcH/oyaMdXy6xX/YdxR6huEOAM0o=
 github.com/containers/conmon v0.3.0/go.mod h1:hgwZ2mtuDrppv78a/cOBNiCm6O0UMWGx1mu7P00nu5I=
 github.com/containers/image v2.0.0+incompatible h1:FTr6Br7jlIKNCKMjSOMbAxKp2keQ0//jzJaYNTVhauk=
 github.com/containers/image v2.0.0+incompatible/go.mod h1:8Vtij257IWSanUQKe1tAeNOm2sRVkSqQTVQ1IlwI3+M=
@@ -705,6 +707,8 @@ github.com/opencontainers/selinux v1.2.2 h1:Kx9J6eDG5/24A6DtUquGSpJQ+m2MUTahn4Ft
 github.com/opencontainers/selinux v1.2.2/go.mod h1:+BLncwf63G4dgOzykXAxcmnFlUaOlkDdmw/CqsW6pjs=
 github.com/opencontainers/selinux v1.3.0 h1:xsI95WzPZu5exzA6JzkLSfdr/DilzOhCJOqGe5TgR0g=
 github.com/opencontainers/selinux v1.3.0/go.mod h1:+BLncwf63G4dgOzykXAxcmnFlUaOlkDdmw/CqsW6pjs=
+github.com/openshift/api v3.9.1-0.20190810003144-27fb16909b15+incompatible h1:s55wx8JIG/CKnewev892HifTBrtKzMdvgB3rm4rxC2s=
+github.com/openshift/api v3.9.1-0.20190810003144-27fb16909b15+incompatible/go.mod h1:dh9o4Fs58gpFXGSYfnVxGR9PnV53I8TW84pQaJDdGiY=
 github.com/openshift/imagebuilder v1.1.0 h1:oT704SkwMEzmIMU/+Uv1Wmvt+p10q3v2WuYMeFI18c4=
 github.com/openshift/imagebuilder v1.1.0/go.mod h1:9aJRczxCH0mvT6XQ+5STAQaPWz7OsWcU5/mRkt8IWeo=
 github.com/opentracing/opentracing-go v1.1.0 h1:pWlfV3Bxv7k65HYwkikxat0+s3pV4bsqf19k25Ur8rU=
