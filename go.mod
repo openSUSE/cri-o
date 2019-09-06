@@ -13,7 +13,7 @@ require (
 	github.com/containerd/ttrpc v0.0.0-20190613183316-1fb3814edf44
 	github.com/containernetworking/cni v0.7.1
 	github.com/containernetworking/plugins v0.8.2
-	github.com/containers/buildah v1.10.1
+	github.com/containers/buildah v1.11.0
 	github.com/containers/image v3.0.2+incompatible
 	github.com/containers/libpod v1.5.1
 	github.com/containers/storage v1.13.2
