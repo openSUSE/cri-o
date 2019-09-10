@@ -706,7 +706,7 @@ github.com/ulikunitz/xz
 github.com/ulikunitz/xz/internal/xlog
 github.com/ulikunitz/xz/lzma
 github.com/ulikunitz/xz/internal/hash
-# github.com/urfave/cli v1.21.0
+# github.com/urfave/cli v1.22.0
 github.com/urfave/cli
 # github.com/vbatts/git-validation v1.0.0
 github.com/vbatts/git-validation
