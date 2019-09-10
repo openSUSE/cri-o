@@ -46,7 +46,7 @@ require (
 	github.com/sirupsen/logrus v1.4.2
 	github.com/soheilhy/cmux v0.1.4
 	github.com/syndtr/gocapability v0.0.0-20180916011248-d98352740cb2
-	github.com/urfave/cli v1.21.0
+	github.com/urfave/cli v1.22.0
 	github.com/vbatts/git-validation v1.0.0
 	golang.org/x/net v0.0.0-20190628185345-da137c7871d7
 	golang.org/x/sync v0.0.0-20190423024810-112230192c58
