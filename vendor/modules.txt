@@ -221,6 +221,8 @@ github.com/coreos/pkg/dlopen
 # github.com/cpuguy83/go-md2man v1.0.10
 github.com/cpuguy83/go-md2man
 github.com/cpuguy83/go-md2man/md2man
+# github.com/cpuguy83/go-md2man/v2 v2.0.0-20190314233015-f79a8a8ca69d
+github.com/cpuguy83/go-md2man/v2/md2man
 # github.com/creack/pty v1.1.7
 github.com/creack/pty
 # github.com/cri-o/ocicni v0.1.1-0.20190702175919-7762645d18ca
@@ -672,10 +674,14 @@ github.com/prometheus/procfs
 github.com/prometheus/procfs/internal/fs
 # github.com/russross/blackfriday v1.5.2
 github.com/russross/blackfriday
+# github.com/russross/blackfriday/v2 v2.0.1
+github.com/russross/blackfriday/v2
 # github.com/seccomp/containers-golang v0.3.1
 github.com/seccomp/containers-golang
 # github.com/seccomp/libseccomp-golang v0.9.1
 github.com/seccomp/libseccomp-golang
+# github.com/shurcooL/sanitized_anchor_name v1.0.0
+github.com/shurcooL/sanitized_anchor_name
 # github.com/sirupsen/logrus v1.4.2
 github.com/sirupsen/logrus
 # github.com/soheilhy/cmux v0.1.4
@@ -708,7 +714,7 @@ github.com/ulikunitz/xz/lzma
 github.com/ulikunitz/xz/internal/hash
 # github.com/ultraware/funlen v0.0.1
 github.com/ultraware/funlen
-# github.com/urfave/cli v1.22.0
+# github.com/urfave/cli v1.22.1
 github.com/urfave/cli
 # github.com/vbatts/git-validation v1.0.0
 github.com/vbatts/git-validation
