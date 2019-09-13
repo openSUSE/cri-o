@@ -35,7 +35,7 @@ github.com/blang/semver
 # github.com/checkpoint-restore/go-criu v0.0.0-20190109184317-bdb7599cd87b
 github.com/checkpoint-restore/go-criu/rpc
 github.com/checkpoint-restore/go-criu
-# github.com/containerd/console v0.0.0-20170925154832-84eeaae905fa
+# github.com/containerd/console v0.0.0-20181022165439-0650fd9eeb50
 github.com/containerd/console
 # github.com/containerd/containerd v1.2.9
 github.com/containerd/containerd/api/types/task
@@ -71,10 +71,12 @@ github.com/containernetworking/cni/pkg/invoke
 github.com/containernetworking/cni/pkg/version
 # github.com/containernetworking/plugins v0.8.2
 github.com/containernetworking/plugins/pkg/ns
-# github.com/containers/buildah v1.11.0
+# github.com/containers/buildah v1.11.1
 github.com/containers/buildah/pkg/secrets
 github.com/containers/buildah/pkg/parse
+github.com/containers/buildah/pkg/umask
 github.com/containers/buildah
+github.com/containers/buildah/pkg/unshare
 github.com/containers/buildah/imagebuildah
 github.com/containers/buildah/util
 github.com/containers/buildah/bind
@@ -83,7 +85,6 @@ github.com/containers/buildah/docker
 github.com/containers/buildah/pkg/blobcache
 github.com/containers/buildah/pkg/chrootuser
 github.com/containers/buildah/pkg/overlay
-github.com/containers/buildah/pkg/unshare
 github.com/containers/buildah/pkg/cgroups
 github.com/containers/buildah/pkg/cli
 # github.com/containers/image v3.0.2+incompatible
@@ -209,10 +210,9 @@ github.com/containers/storage/pkg/ostree
 github.com/containers/storage/drivers/copy
 # github.com/coreos/go-iptables v0.4.2
 github.com/coreos/go-iptables/iptables
-# github.com/coreos/go-systemd v0.0.0-20190620071333-e64a0ec8b42a
+# github.com/coreos/go-systemd v0.0.0-20190719114852-fd7a80b32e1f
 github.com/coreos/go-systemd/daemon
 github.com/coreos/go-systemd/dbus
-github.com/coreos/go-systemd/util
 github.com/coreos/go-systemd/activation
 github.com/coreos/go-systemd/sdjournal
 github.com/coreos/go-systemd/journal
@@ -605,7 +605,7 @@ github.com/opencontainers/go-digest
 # github.com/opencontainers/image-spec v1.0.1
 github.com/opencontainers/image-spec/specs-go/v1
 github.com/opencontainers/image-spec/specs-go
-# github.com/opencontainers/runc v1.0.0-rc8
+# github.com/opencontainers/runc v1.0.0-rc8.0.20190827142921-dd075602f158
 github.com/opencontainers/runc/libcontainer
 github.com/opencontainers/runc/libcontainer/cgroups
 github.com/opencontainers/runc/libcontainer/cgroups/systemd
@@ -617,6 +617,7 @@ github.com/opencontainers/runc/libcontainer/cgroups/fs
 github.com/opencontainers/runc/libcontainer/configs/validate
 github.com/opencontainers/runc/libcontainer/intelrdt
 github.com/opencontainers/runc/libcontainer/keys
+github.com/opencontainers/runc/libcontainer/logs
 github.com/opencontainers/runc/libcontainer/mount
 github.com/opencontainers/runc/libcontainer/seccomp
 github.com/opencontainers/runc/libcontainer/stacktrace

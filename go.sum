@@ -88,6 +88,8 @@ github.com/containerd/cgroups v0.0.0-20190603164311-51b62d303d38 h1:YXAXK2/dn2sU
 github.com/containerd/cgroups v0.0.0-20190603164311-51b62d303d38/go.mod h1:X9rLEHIqSf/wfK8NsPqxJmeZgW4pcfzdXITDrUSJ6uI=
 github.com/containerd/console v0.0.0-20170925154832-84eeaae905fa h1:GnRy2maqb8vcJhYRN5L+5WyYNKfUG4otiz2zxE182ng=
 github.com/containerd/console v0.0.0-20170925154832-84eeaae905fa/go.mod h1:Tj/on1eG8kiEhd0+fhSDzsPAFESxzBBvdyEgyryXffw=
+github.com/containerd/console v0.0.0-20181022165439-0650fd9eeb50 h1:WMpHmC6AxwWb9hMqhudkqG7A/p14KiMnl6d3r1iUMjU=
+github.com/containerd/console v0.0.0-20181022165439-0650fd9eeb50/go.mod h1:Tj/on1eG8kiEhd0+fhSDzsPAFESxzBBvdyEgyryXffw=
 github.com/containerd/containerd v1.0.2/go.mod h1:bC6axHOhabU15QhwfG7w5PipXdVtMXFTttgp+kVtyUA=
 github.com/containerd/containerd v1.2.7 h1:8lqLbl7u1j3MmiL9cJ/O275crSq7bfwUayvvatEupQk=
 github.com/containerd/containerd v1.2.7/go.mod h1:bC6axHOhabU15QhwfG7w5PipXdVtMXFTttgp+kVtyUA=
@@ -136,6 +138,8 @@ github.com/containers/buildah v1.10.1 h1:YBFHZkpbWCxUR/gjRAZrRzs2E0DfdUe3+/8OA9f
 github.com/containers/buildah v1.10.1/go.mod h1:ZTyMFo3IQlu9tYndtnAf0Tjf2NdeUL6bY2/TpP9uIuU=
 github.com/containers/buildah v1.11.0 h1:w0jZybDBTb5lvBKmFuuncxbb3D+D68EHnngIcAXFKjg=
 github.com/containers/buildah v1.11.0/go.mod h1:vIO922hCyTe9LEUlcH/oyaMdXy6xX/YdxR6huEOAM0o=
+github.com/containers/buildah v1.11.1 h1:oxTB6jXeIO9fmOCgqTAewYcqRiPFBMxvcNxjxSQgbvI=
+github.com/containers/buildah v1.11.1/go.mod h1:CtnP3vsLiU3xgKvkhdb4b0IzYwXNzHRv3ezl4z+RPC0=
 github.com/containers/conmon v0.3.0/go.mod h1:hgwZ2mtuDrppv78a/cOBNiCm6O0UMWGx1mu7P00nu5I=
 github.com/containers/image v2.0.0+incompatible h1:FTr6Br7jlIKNCKMjSOMbAxKp2keQ0//jzJaYNTVhauk=
 github.com/containers/image v2.0.0+incompatible/go.mod h1:8Vtij257IWSanUQKe1tAeNOm2sRVkSqQTVQ1IlwI3+M=
@@ -192,6 +196,8 @@ github.com/coreos/go-systemd v0.0.0-20180511133405-39ca1b05acc7/go.mod h1:F5haX7
 github.com/coreos/go-systemd v0.0.0-20190321100706-95778dfbb74e/go.mod h1:F5haX7vjVVG0kc13fIWeqUViNPyEJxv/OmvnBo0Yme4=
 github.com/coreos/go-systemd v0.0.0-20190620071333-e64a0ec8b42a h1:W8b4lQ4tFF21aspRGoBuCNV6V2fFJBF+pm1J6OY8Lys=
 github.com/coreos/go-systemd v0.0.0-20190620071333-e64a0ec8b42a/go.mod h1:F5haX7vjVVG0kc13fIWeqUViNPyEJxv/OmvnBo0Yme4=
+github.com/coreos/go-systemd v0.0.0-20190719114852-fd7a80b32e1f h1:JOrtw2xFKzlg+cbHpyrpLDmnN1HqhBfnX7WDiW7eG2c=
+github.com/coreos/go-systemd v0.0.0-20190719114852-fd7a80b32e1f/go.mod h1:F5haX7vjVVG0kc13fIWeqUViNPyEJxv/OmvnBo0Yme4=
 github.com/coreos/pkg v0.0.0-20180108230652-97fdf19511ea/go.mod h1:E3G3o1h8I7cfcXa63jLwjI0eiQQMgzzUDFVpN/nH/eA=
 github.com/coreos/pkg v0.0.0-20180928190104-399ea9e2e55f h1:lBNOc5arjvs8E5mO2tbpBpLoyyu8B6e44T7hJy6potg=
 github.com/coreos/pkg v0.0.0-20180928190104-399ea9e2e55f/go.mod h1:E3G3o1h8I7cfcXa63jLwjI0eiQQMgzzUDFVpN/nH/eA=
@@ -722,6 +728,8 @@ github.com/opencontainers/runc v1.0.0-rc2.0.20190611121236-6cc515888830/go.mod h
 github.com/opencontainers/runc v1.0.0-rc6/go.mod h1:qT5XzbpPznkRYVz/mWwUaVBUv2rmF59PVA73FjuZG0U=
 github.com/opencontainers/runc v1.0.0-rc8 h1:dDCFes8Hj1r/i5qnypONo5jdOme/8HWZC/aNDyhECt0=
 github.com/opencontainers/runc v1.0.0-rc8/go.mod h1:qT5XzbpPznkRYVz/mWwUaVBUv2rmF59PVA73FjuZG0U=
+github.com/opencontainers/runc v1.0.0-rc8.0.20190827142921-dd075602f158 h1:/A6bAdnSZoTQmKml3MdHAnSEPnBAQeigNBl4sxnfaaQ=
+github.com/opencontainers/runc v1.0.0-rc8.0.20190827142921-dd075602f158/go.mod h1:qT5XzbpPznkRYVz/mWwUaVBUv2rmF59PVA73FjuZG0U=
 github.com/opencontainers/runtime-spec v0.1.2-0.20190408193819-a1b50f621a48 h1:7IFBPtDtiQr5iUxv4CSJ62K25ENfu2/JVXlOmIH1RKY=
 github.com/opencontainers/runtime-spec v0.1.2-0.20190408193819-a1b50f621a48/go.mod h1:jwyrGlmzljRJv/Fgzds9SsS/C5hL+LL3ko9hs6T5lQ0=
 github.com/opencontainers/runtime-tools v0.3.1-0.20190418135848-095789df6c2b/go.mod h1:r3f7wjNzSs2extwzU3Y+6pKfobzPh+kKFJ3ofN+3nfs=
