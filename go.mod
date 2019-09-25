@@ -28,7 +28,7 @@ require (
 	github.com/godbus/dbus v4.1.0+incompatible
 	github.com/gogo/protobuf v1.2.2-0.20190723190241-65acae22fc9d
 	github.com/golang/mock v1.3.1
-	github.com/golangci/golangci-lint v1.18.0
+	github.com/golangci/golangci-lint v1.19.1
 	github.com/google/renameio v0.1.0
 	github.com/google/uuid v1.1.1
 	github.com/hpcloud/tail v1.0.0
@@ -49,9 +49,9 @@ require (
 	github.com/syndtr/gocapability v0.0.0-20180916011248-d98352740cb2
 	github.com/urfave/cli v1.22.1
 	github.com/vbatts/git-validation v1.0.0
-	golang.org/x/net v0.0.0-20190628185345-da137c7871d7
+	golang.org/x/net v0.0.0-20190909003024-a7b16738d86b
 	golang.org/x/sync v0.0.0-20190423024810-112230192c58
-	golang.org/x/sys v0.0.0-20190804053845-51ab0e2deafa
+	golang.org/x/sys v0.0.0-20190911201528-7ad0cfa0b7b5
 	google.golang.org/grpc v1.23.1
 	k8s.io/api v0.0.0
 	k8s.io/apimachinery v0.0.0
