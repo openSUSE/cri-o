@@ -170,7 +170,7 @@ github.com/containers/psgo/internal/dev
 github.com/containers/psgo/internal/proc
 github.com/containers/psgo/internal/process
 github.com/containers/psgo/internal/host
-# github.com/containers/storage v1.13.4
+# github.com/containers/storage v1.13.5
 github.com/containers/storage/pkg/reexec
 github.com/containers/storage
 github.com/containers/storage/pkg/idtools
@@ -209,7 +209,6 @@ github.com/containers/storage/pkg/parsers/kernel
 github.com/containers/storage/drivers/overlayutils
 github.com/containers/storage/drivers/quota
 github.com/containers/storage/pkg/fsutils
-github.com/containers/storage/pkg/ostree
 github.com/containers/storage/drivers/copy
 # github.com/coreos/go-systemd v0.0.0-20190719114852-fd7a80b32e1f
 github.com/coreos/go-systemd/daemon
