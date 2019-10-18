@@ -102,7 +102,7 @@ func (r *Runtime) initContainerVariables(rSpec *spec.Spec, config *ContainerConf
 
 	ctr.config.StopTimeout = define.CtrRemoveTimeout
 
-	ctr.config.OCIRuntime = r.defaultOCIRuntime.name
+	ctr.config.OCIRuntime = r.defaultOCIRuntime.Name()
 
 	// Set namespace based on current runtime namespace
 	// Do so before options run so they can override it
@@ -167,8 +167,8 @@ func (r *Runtime) setupContainer(ctx context.Context, ctr *Container) (c *Contai
 
 	// Check NoCgroups support
 	if ctr.config.NoCgroups {
-		if !ctr.ociRuntime.supportsNoCgroups {
-			return nil, errors.Wrapf(define.ErrInvalidArg, "requested OCI runtime %s is not compatible with NoCgroups", ctr.ociRuntime.name)
+		if !ctr.ociRuntime.SupportsNoCgroups() {
+			return nil, errors.Wrapf(define.ErrInvalidArg, "requested OCI runtime %s is not compatible with NoCgroups", ctr.ociRuntime.Name())
 		}
 	}
 
@@ -264,6 +264,14 @@ func (r *Runtime) setupContainer(ctx context.Context, ctr *Container) (c *Contai
 		g.RemoveMount("/etc/hosts")
 		g.RemoveMount("/run/.containerenv")
 		g.RemoveMount("/run/secrets")
+
+		// Regenerate CGroup paths so they don't point to the old
+		// container ID.
+		cgroupPath, err := ctr.getOCICgroupPath()
+		if err != nil {
+			return nil, err
+		}
+		g.SetLinuxCgroupsPath(cgroupPath)
 	}
 
 	// Set up storage for the container
@@ -430,7 +438,7 @@ func (r *Runtime) removeContainer(ctx context.Context, c *Container, force bool,
 	}
 
 	if c.state.State == define.ContainerStatePaused {
-		if err := c.ociRuntime.killContainer(c, 9); err != nil {
+		if err := c.ociRuntime.KillContainer(c, 9, false); err != nil {
 			return err
 		}
 		if err := c.unpause(); err != nil {
@@ -444,15 +452,15 @@ func (r *Runtime) removeContainer(ctx context.Context, c *Container, force bool,
 
 	// Check that the container's in a good state to be removed
 	if c.state.State == define.ContainerStateRunning {
-		if err := c.stop(c.StopTimeout()); err != nil {
+		if err := c.stop(c.StopTimeout(), true); err != nil {
 			return errors.Wrapf(err, "cannot remove container %s as it could not be stopped", c.ID())
 		}
 	}
 
 	// Check that all of our exec sessions have finished
-	if len(c.state.ExecSessions) != 0 {
-		if err := c.ociRuntime.execStopContainer(c, c.StopTimeout()); err != nil {
-			return err
+	for _, session := range c.state.ExecSessions {
+		if err := c.ociRuntime.ExecStopContainer(c, session.ID, c.StopTimeout()); err != nil {
+			return errors.Wrapf(err, "error stopping exec session %s of container %s", session.ID, c.ID())
 		}
 	}
 
@@ -548,6 +556,144 @@ func (r *Runtime) removeContainer(ctx context.Context, c *Container, force bool,
 	}
 
 	return cleanupErr
+}
+
+// EvictContainer removes the given container partial or full ID or name, and
+// returns the full ID of the evicted container and any error encountered.
+// It should be used to remove a container when obtaining a Container struct
+// pointer has failed.
+// Running container will not be stopped.
+// If removeVolume is specified, named volumes used by the container will
+// be removed also if and only if the container is the sole user.
+func (r *Runtime) EvictContainer(ctx context.Context, idOrName string, removeVolume bool) (string, error) {
+	r.lock.RLock()
+	defer r.lock.RUnlock()
+	return r.evictContainer(ctx, idOrName, removeVolume)
+}
+
+// evictContainer is the internal function to handle container eviction based
+// on its partial or full ID or name.
+// It returns the full ID of the evicted container and any error encountered.
+// This does not lock the runtime nor the container.
+// removePod is used only when removing pods. It instructs Podman to ignore
+// infra container protections, and *not* remove from the database (as pod
+// remove will handle that).
+func (r *Runtime) evictContainer(ctx context.Context, idOrName string, removeVolume bool) (string, error) {
+	var err error
+
+	if !r.valid {
+		return "", define.ErrRuntimeStopped
+	}
+
+	id, err := r.state.LookupContainerID(idOrName)
+	if err != nil {
+		return "", errors.Wrapf(err, "Failed to find container %q in state", idOrName)
+	}
+
+	// Begin by trying a normal removal. Valid containers will be removed normally.
+	tmpCtr, err := r.state.Container(id)
+	if err == nil {
+		logrus.Infof("Container %s successfully retrieved from state, attempting normal removal", id)
+		// Assume force = true for the evict case
+		err = r.removeContainer(ctx, tmpCtr, true, removeVolume, false)
+		if !tmpCtr.valid {
+			// If the container is marked invalid, remove succeeded
+			// in kicking it out of the state - no need to continue.
+			return id, err
+		}
+
+		if err == nil {
+			// Something has gone seriously wrong - no error but
+			// container was not removed.
+			logrus.Errorf("Container %s not removed with no error", id)
+		} else {
+			logrus.Warnf("Failed to removal container %s normally, proceeding with evict: %v", id, err)
+		}
+	}
+
+	// Error out if the container does not exist in libpod
+	exists, err := r.state.HasContainer(id)
+	if err != nil {
+		return id, err
+	}
+	if !exists {
+		return id, errors.Wrapf(err, "Failed to find container ID %q for eviction", id)
+	}
+
+	// Re-create a container struct for removal purposes
+	c := new(Container)
+	c.config, err = r.state.GetContainerConfig(id)
+	if err != nil {
+		return id, errors.Wrapf(err, "failed to retrieve config for ctr ID %q", id)
+	}
+	c.state = new(ContainerState)
+
+	// We need to lock the pod before we lock the container.
+	// To avoid races around removing a container and the pod it is in.
+	// Don't need to do this in pod removal case - we're evicting the entire
+	// pod.
+	var pod *Pod
+	if c.config.Pod != "" {
+		pod, err = r.state.Pod(c.config.Pod)
+		if err != nil {
+			return id, errors.Wrapf(err, "container %s is in pod %s, but pod cannot be retrieved", c.ID(), pod.ID())
+		}
+
+		// Lock the pod while we're removing container
+		pod.lock.Lock()
+		defer pod.lock.Unlock()
+		if err := pod.updatePod(); err != nil {
+			return id, err
+		}
+
+		infraID := pod.state.InfraContainerID
+		if c.ID() == infraID {
+			return id, errors.Errorf("container %s is the infra container of pod %s and cannot be removed without removing the pod", c.ID(), pod.ID())
+		}
+	}
+
+	var cleanupErr error
+	// Remove the container from the state
+	if c.config.Pod != "" {
+		// If we're removing the pod, the container will be evicted
+		// from the state elsewhere
+		if err := r.state.RemoveContainerFromPod(pod, c); err != nil {
+			cleanupErr = err
+		}
+	} else {
+		if err := r.state.RemoveContainer(c); err != nil {
+			cleanupErr = err
+		}
+	}
+
+	// Unmount container mount points
+	for _, mount := range c.config.Mounts {
+		Unmount(mount)
+	}
+
+	// Remove container from c/storage
+	if err := r.removeStorageContainer(id, true); err != nil {
+		if cleanupErr == nil {
+			cleanupErr = err
+		}
+	}
+
+	if !removeVolume {
+		return id, cleanupErr
+	}
+
+	for _, v := range c.config.NamedVolumes {
+		if volume, err := r.state.Volume(v.Name); err == nil {
+			if !volume.IsCtrSpecific() {
+				continue
+			}
+			if err := r.removeVolume(ctx, volume, false); err != nil && err != define.ErrNoSuchVolume && err != define.ErrVolumeBeingUsed {
+				logrus.Errorf("cleanup volume (%s): %v", v, err)
+			}
+		}
+	}
+
+	return id, cleanupErr
 }
 
 // GetContainer retrieves a container by its ID

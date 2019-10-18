@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"syscall"
 
-	"github.com/containers/image/manifest"
+	"github.com/containers/image/v4/manifest"
 	"github.com/containers/libpod/libpod/define"
 	"github.com/containers/libpod/libpod/events"
 	"github.com/containers/libpod/pkg/namespaces"
@@ -20,8 +20,8 @@ import (
 )
 
 var (
-	nameRegex  = regexp.MustCompile("^[a-zA-Z0-9][a-zA-Z0-9_.-]*$")
-	regexError = errors.Wrapf(define.ErrInvalidArg, "names must match [a-zA-Z0-9][a-zA-Z0-9_.-]*")
+	NameRegex  = regexp.MustCompile("^[a-zA-Z0-9][a-zA-Z0-9_.-]*$")
+	RegexError = errors.Wrapf(define.ErrInvalidArg, "names must match [a-zA-Z0-9][a-zA-Z0-9_.-]*")
 )
 
 // Runtime Creation Options
@@ -463,6 +463,28 @@ func WithMigrate() RuntimeOption {
 	}
 }
 
+// WithMigrateRuntime instructs Libpod to change the default OCI runtime on all
+// containers during a migration. This is not used if `MigrateRuntime()` is not
+// also passed.
+// Libpod makes no promises that your containers continue to work with the new
+// runtime - migrations between dissimilar runtimes may well break things.
+// Use with caution.
+func WithMigrateRuntime(requestedRuntime string) RuntimeOption {
+	return func(rt *Runtime) error {
+		if rt.valid {
+			return define.ErrRuntimeFinalized
+		}
+
+		if requestedRuntime == "" {
+			return errors.Wrapf(define.ErrInvalidArg, "must provide a non-empty name for new runtime")
+		}
+
+		rt.migrateRuntime = requestedRuntime
+
+		return nil
+	}
+}
+
 // WithEventsLogger sets the events backend to use.
 // Currently supported values are "file" for file backend and "journald" for
 // journald backend.
@@ -648,8 +670,8 @@ func WithName(name string) CtrCreateOption {
 		}
 
 		// Check the name against a regex
-		if !nameRegex.MatchString(name) {
-			return regexError
+		if !NameRegex.MatchString(name) {
+			return RegexError
 		}
 
 		ctr.config.Name = name
@@ -1426,8 +1448,8 @@ func WithVolumeName(name string) VolumeCreateOption {
 		}
 
 		// Check the name against a regex
-		if !nameRegex.MatchString(name) {
-			return regexError
+		if !NameRegex.MatchString(name) {
+			return RegexError
 		}
 		volume.config.Name = name
 
@@ -1532,8 +1554,8 @@ func WithPodName(name string) PodCreateOption {
 		}
 
 		// Check the name against a regex
-		if !nameRegex.MatchString(name) {
-			return regexError
+		if !NameRegex.MatchString(name) {
+			return RegexError
 		}
 
 		pod.config.Name = name
@@ -1550,8 +1572,8 @@ func WithPodHostname(hostname string) PodCreateOption {
 		}
 
 		// Check the hostname against a regex
-		if !nameRegex.MatchString(hostname) {
-			return regexError
+		if !NameRegex.MatchString(hostname) {
+			return RegexError
 		}
 
 		pod.config.Hostname = hostname

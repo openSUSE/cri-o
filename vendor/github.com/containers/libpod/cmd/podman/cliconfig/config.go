@@ -42,6 +42,8 @@ type MainFlags struct {
 	ConnectionName       string
 	RemoteConfigFilePath string
 	Port                 int
+	IdentityFile         string
+	IgnoreHosts          bool
 }
 
 type AttachValues struct {
@@ -649,6 +651,7 @@ type SystemRenumberValues struct {
 
 type SystemMigrateValues struct {
 	PodmanCommand
+	NewRuntime string
 }
 
 type SystemDfValues struct {
