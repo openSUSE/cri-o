@@ -14,7 +14,7 @@ require (
 	github.com/containernetworking/cni v0.7.1
 	github.com/containernetworking/plugins v0.8.2
 	github.com/containers/buildah v1.11.3
-	github.com/containers/conmon v2.0.0+incompatible
+	github.com/containers/conmon v2.0.1+incompatible
 	github.com/containers/image/v4 v4.0.1
 	github.com/containers/libpod v1.6.2
 	github.com/containers/storage v1.13.5
