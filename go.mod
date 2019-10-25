@@ -42,7 +42,7 @@ require (
 	github.com/opencontainers/runtime-tools v0.9.0
 	github.com/opencontainers/selinux v1.3.0
 	github.com/pkg/errors v0.8.1
-	github.com/prometheus/client_golang v1.1.0
+	github.com/prometheus/client_golang v1.2.1
 	github.com/seccomp/containers-golang v0.3.1
 	github.com/sirupsen/logrus v1.4.2
 	github.com/soheilhy/cmux v0.1.4
