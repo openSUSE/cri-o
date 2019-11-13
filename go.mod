@@ -4,16 +4,16 @@ module github.com/cri-o/cri-o
 
 require (
 	github.com/BurntSushi/toml v0.3.1
-	github.com/Microsoft/go-winio v0.4.14
+	github.com/Microsoft/go-winio v0.4.15-0.20190919025122-fc70bd9a86b5
 	github.com/blang/semver v3.5.1+incompatible
 	github.com/containerd/containerd v1.3.0
 	github.com/containerd/fifo v0.0.0-20190816180239-bda0ff6ed73c // indirect
 	github.com/containerd/go-runc v0.0.0-20190923131748-a2952bc25f51 // indirect
 	github.com/containerd/project v0.0.0-20190513184420-7fb81da5e663
-	github.com/containerd/ttrpc v0.0.0-20190613183316-1fb3814edf44
+	github.com/containerd/ttrpc v0.0.0-20190828154514-0e0f228740de
 	github.com/containernetworking/cni v0.7.1
 	github.com/containernetworking/plugins v0.8.3
-	github.com/containers/buildah v1.11.4
+	github.com/containers/buildah v1.11.5
 	github.com/containers/conmon v2.0.2+incompatible
 	github.com/containers/image/v5 v5.0.0
 	github.com/containers/libpod v1.6.3-0.20191031190106-0bfdeae6ddfa
@@ -21,7 +21,7 @@ require (
 	github.com/coreos/go-systemd v0.0.0-20190719114852-fd7a80b32e1f
 	github.com/cpuguy83/go-md2man v1.0.10
 	github.com/cri-o/ocicni v0.1.1-0.20190702175919-7762645d18ca
-	github.com/docker/docker v1.4.2-0.20190927142053-ada3c14355ce
+	github.com/docker/docker v1.4.2-0.20191101170500-ac7306503d23
 	github.com/docker/go-units v0.4.0
 	github.com/fsnotify/fsnotify v1.4.7
 	github.com/go-zoo/bone v1.3.0
@@ -57,7 +57,7 @@ require (
 	k8s.io/apimachinery v0.0.0
 	k8s.io/client-go v0.0.0
 	k8s.io/cri-api v0.0.0
-	k8s.io/kubernetes v0.0.0
+	k8s.io/kubernetes v1.13.0
 	k8s.io/utils v0.0.0-20191010214722-8d271d903fe4
 )
 
