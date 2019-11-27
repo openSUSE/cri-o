@@ -387,10 +387,34 @@ func fillGo18FileTypeBits(mode int64, fi os.FileInfo) int64 {
 // ReadSecurityXattrToTarHeader reads security.capability xattr from filesystem
 // to a tar header
 func ReadSecurityXattrToTarHeader(path string, hdr *tar.Header) error {
-	capability, _ := system.Lgetxattr(path, "security.capability")
+	capability, err := system.Lgetxattr(path, "security.capability")
+	if err != nil && err != system.EOPNOTSUPP {
+		return err
+	}
 	if capability != nil {
 		hdr.Xattrs = make(map[string]string)
 		hdr.Xattrs["security.capability"] = string(capability)
+	}
+	return nil
+}
+
+// ReadUserXattrToTarHeader reads user.* xattr from filesystem to a tar header
+func ReadUserXattrToTarHeader(path string, hdr *tar.Header) error {
+	xattrs, err := system.Llistxattr(path)
+	if err != nil && err != system.EOPNOTSUPP {
+		return err
+	}
+	for _, key := range xattrs {
+		if strings.HasPrefix(key, "user.") {
+			value, err := system.Lgetxattr(path, key)
+			if err != nil {
+				return err
+			}
+			if hdr.Xattrs == nil {
+				hdr.Xattrs = make(map[string]string)
+			}
+			hdr.Xattrs[key] = string(value)
+		}
 	}
 	return nil
 }
@@ -467,6 +491,9 @@ func (ta *tarAppender) addTarFile(path, name string) error {
 		return err
 	}
 	if err := ReadSecurityXattrToTarHeader(path, hdr); err != nil {
+		return err
+	}
+	if err := ReadUserXattrToTarHeader(path, hdr); err != nil {
 		return err
 	}
 	if ta.CopyPass {
@@ -821,11 +848,12 @@ func TarWithOptions(srcPath string, options *TarOptions) (io.ReadCloser, error) 
 				// is asking for that file no matter what - which is true
 				// for some files, like .dockerignore and Dockerfile (sometimes)
 				if include != relFilePath {
-					skip, err = pm.Matches(relFilePath)
+					matches, err := pm.IsMatch(relFilePath)
 					if err != nil {
 						logrus.Errorf("Error matching %s: %v", relFilePath, err)
 						return err
 					}
+					skip = matches
 				}
 
 				if skip {
