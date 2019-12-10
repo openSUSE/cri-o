@@ -1009,6 +1009,8 @@ github.com/seccomp/containers-golang v0.0.0-20190312124753-8ca8945ccf5f h1:OtU/w
 github.com/seccomp/containers-golang v0.0.0-20190312124753-8ca8945ccf5f/go.mod h1:f/98/SnvAzhAEFQJ3u836FePXvcbE8BS0YGMQNn4mhA=
 github.com/seccomp/containers-golang v0.3.1 h1:KPBvAQ1xQvGN6XdPAveoLqwbniEBkTV6sxBV5/I4FFs=
 github.com/seccomp/containers-golang v0.3.1/go.mod h1:ZUNmbYf+/7mfX5qYV07/krJnTdQQRF67rBMOwzciCwE=
+github.com/seccomp/containers-golang v0.3.2 h1:BPR2t46OT8F9XejEYmsKMsq/Qzwg7FWX8u0ypftObFc=
+github.com/seccomp/containers-golang v0.3.2/go.mod h1:ZUNmbYf+/7mfX5qYV07/krJnTdQQRF67rBMOwzciCwE=
 github.com/seccomp/libseccomp-golang v0.0.0-20150813023252-1b506fc7c24e/go.mod h1:GbW5+tmTXfcxTToHLXlScSlAvWlF4P2Ca7zGrPiEpWo=
 github.com/seccomp/libseccomp-golang v0.9.0/go.mod h1:GbW5+tmTXfcxTToHLXlScSlAvWlF4P2Ca7zGrPiEpWo=
 github.com/seccomp/libseccomp-golang v0.9.1 h1:NJjM5DNFOs0s3kYE1WUOr6G8V97sdt46rlXTMfXGWBo=
