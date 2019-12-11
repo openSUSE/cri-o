@@ -55,7 +55,7 @@ require (
 	google.golang.org/grpc v1.25.1
 	k8s.io/api v0.0.0
 	k8s.io/apimachinery v0.0.0
-	k8s.io/client-go v0.0.0
+	k8s.io/client-go v0.17.0
 	k8s.io/cri-api v0.0.0
 	k8s.io/kubernetes v0.0.0
 	k8s.io/utils v0.0.0-20191114200735-6ca3b61696b6

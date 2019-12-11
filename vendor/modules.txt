@@ -806,7 +806,7 @@ k8s.io/apiserver/pkg/features
 k8s.io/apiserver/pkg/server/httplog
 k8s.io/apiserver/pkg/util/feature
 k8s.io/apiserver/pkg/util/wsstream
-# k8s.io/client-go v0.0.0 => k8s.io/kubernetes/staging/src/k8s.io/client-go v0.0.0-20191203004459-3bec159cdc7f
+# k8s.io/client-go v0.17.0 => k8s.io/kubernetes/staging/src/k8s.io/client-go v0.0.0-20191203004459-3bec159cdc7f
 k8s.io/client-go/discovery
 k8s.io/client-go/informers
 k8s.io/client-go/informers/admissionregistration
