@@ -197,6 +197,8 @@ github.com/containers/conmon v2.0.3+incompatible h1:jxH9Nm1owQ8spsmISHJGiUChqTKr
 github.com/containers/conmon v2.0.3+incompatible/go.mod h1:hgwZ2mtuDrppv78a/cOBNiCm6O0UMWGx1mu7P00nu5I=
 github.com/containers/conmon v2.0.4+incompatible h1:ynK+6lquWLfLLFZIBlTtqohXh6Z2TEM5kMQS2mJH3UI=
 github.com/containers/conmon v2.0.4+incompatible/go.mod h1:hgwZ2mtuDrppv78a/cOBNiCm6O0UMWGx1mu7P00nu5I=
+github.com/containers/conmon v2.0.5+incompatible h1:cDCOHkOICRQQUpA+HavlMbnNm7b6ML1i2myajSKfgws=
+github.com/containers/conmon v2.0.5+incompatible/go.mod h1:hgwZ2mtuDrppv78a/cOBNiCm6O0UMWGx1mu7P00nu5I=
 github.com/containers/image v2.0.0+incompatible h1:FTr6Br7jlIKNCKMjSOMbAxKp2keQ0//jzJaYNTVhauk=
 github.com/containers/image v2.0.0+incompatible/go.mod h1:8Vtij257IWSanUQKe1tAeNOm2sRVkSqQTVQ1IlwI3+M=
 github.com/containers/image v2.0.1+incompatible h1:w39mlElA/aSFZ6moFa5N+A4MWu9c8hgdMiMMYnH94Hs=
