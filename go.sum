@@ -136,6 +136,7 @@ github.com/containerd/containerd v1.2.7 h1:8lqLbl7u1j3MmiL9cJ/O275crSq7bfwUayvva
 github.com/containerd/containerd v1.2.7/go.mod h1:bC6axHOhabU15QhwfG7w5PipXdVtMXFTttgp+kVtyUA=
 github.com/containerd/containerd v1.2.9 h1:6tyNjBmAMG47QuFPIT9LgiiexoVxC6qpTGR+eD0R0Z8=
 github.com/containerd/containerd v1.2.9/go.mod h1:bC6axHOhabU15QhwfG7w5PipXdVtMXFTttgp+kVtyUA=
+github.com/containerd/containerd v1.2.10/go.mod h1:bC6axHOhabU15QhwfG7w5PipXdVtMXFTttgp+kVtyUA=
 github.com/containerd/containerd v1.3.0-beta.2.0.20190828155532-0293cbd26c69/go.mod h1:bC6axHOhabU15QhwfG7w5PipXdVtMXFTttgp+kVtyUA=
 github.com/containerd/containerd v1.3.0 h1:xjvXQWABwS2uiv3TWgQt5Uth60Gu86LTGZXMJkjc7rY=
 github.com/containerd/containerd v1.3.0/go.mod h1:bC6axHOhabU15QhwfG7w5PipXdVtMXFTttgp+kVtyUA=
@@ -226,6 +227,8 @@ github.com/containers/image/v4 v4.0.1 h1:idNGHChj0Pyv3vLrxul2oSVMZLeFqpoq3CjLeVg
 github.com/containers/image/v4 v4.0.1/go.mod h1:0ASJH1YgJiX/eqFZObqepgsvIA4XjCgpyfwn9pDGafA=
 github.com/containers/image/v5 v5.0.0 h1:arnXgbt1ucsC/ndtSpiQY87rA0UjhF+/xQnPzqdBDn4=
 github.com/containers/image/v5 v5.0.0/go.mod h1:MgiLzCfIeo8lrHi+4Lb8HP+rh513sm0Mlk6RrhjFOLY=
+github.com/containers/image/v5 v5.1.0 h1:5FjAvPJniamuNNIQHkh4PnsL+n+xzs6Aonzaz5dqTEo=
+github.com/containers/image/v5 v5.1.0/go.mod h1:BKlMD34WxRo1ruGHHEOrPQP0Qci7SWoPwU6fS7arsCU=
 github.com/containers/libpod v0.8.3-0.20190628005010-4aa109f00e95 h1:b5fISjEVoZbR8jNmN9A1p2sZjBT1op9HeaA9T/zEu6s=
 github.com/containers/libpod v0.8.3-0.20190628005010-4aa109f00e95/go.mod h1:dO1PO7t9N5BfdGX0bXhwgBuEgm8DC4QLir8vgdl3ZDY=
 github.com/containers/libpod v0.8.3-0.20190628140055-5e42bf071760 h1:JrdoLRKPp84uxgaOKmXP6DK02KU5p6nNEoKWJeD3bbs=
@@ -249,6 +252,7 @@ github.com/containers/libpod v1.6.3-0.20191101152258-04e8bf3dba50/go.mod h1:9VZM
 github.com/containers/libpod v1.6.3 h1:omluszOpVeEXo+CxvDmxOm90o4FmjEbgidaNeqey0/w=
 github.com/containers/libtrust v0.0.0-20190913040956-14b96171aa3b h1:Q8ePgVfHDplZ7U33NwHZkrVELsZP5fYj9pM5WBZB2GE=
 github.com/containers/libtrust v0.0.0-20190913040956-14b96171aa3b/go.mod h1:9rfv8iPl1ZP7aqh9YA68wnZv2NUDbXdcdPHVz0pFbPY=
+github.com/containers/ocicrypt v0.0.0-20190930154801-b87a4a69c741/go.mod h1:MeJDzk1RJHv89LjsH0Sp5KTY3ZYkjXO/C+bKAeWFIrc=
 github.com/containers/psgo v1.3.0 h1:kDhiA4gNNyJ2qCzmOuBf6AmrF/Pp+6Jo98P68R7fB8I=
 github.com/containers/psgo v1.3.0/go.mod h1:7MELvPTW1fj6yMrwD9I1Iasx1vU+hKlRkHXAJ51sFtU=
 github.com/containers/psgo v1.3.1 h1:1kE+jJ9Ou5f9zQT/M2IdeSclsKWsXrSFlOcnqc+F2TA=
@@ -277,6 +281,7 @@ github.com/containers/storage v1.15.0 h1:QNW7jJ94ccGcAbFIOSMHUAsUxvHceb71ecLye9E
 github.com/containers/storage v1.15.0/go.mod h1:qGPsti/qC1xxX+xcpHfiTMT+8ThVE2Jf83wFHHqkDAY=
 github.com/containers/storage v1.15.2 h1:hLgafU4tuyQk/smMkXZfHTS8FtAQsqQvfWCp4bsgjuw=
 github.com/containers/storage v1.15.2/go.mod h1:v0lq/3f+cXH3Y/HiDaFYRR0zilwDve7I4W7U5xQxvF8=
+github.com/containers/storage v1.15.3/go.mod h1:v0lq/3f+cXH3Y/HiDaFYRR0zilwDve7I4W7U5xQxvF8=
 github.com/coredns/corefile-migration v1.0.2/go.mod h1:OFwBp/Wc9dJt5cAZzHWMNhK1r5L0p0jDwIBc6j8NC8E=
 github.com/coredns/corefile-migration v1.0.4/go.mod h1:OFwBp/Wc9dJt5cAZzHWMNhK1r5L0p0jDwIBc6j8NC8E=
 github.com/coreos/bbolt v1.3.1-coreos.6/go.mod h1:iRUV2dpdMOn7Bo10OQBFzIJO9kkE559Wcmn+qkEiiKk=
@@ -422,6 +427,7 @@ github.com/fsouza/go-dockerclient v1.4.4 h1:Sd5nD4wdAgiPxvrbYUzT2ZZNmPk3z+GGnZ+f
 github.com/fsouza/go-dockerclient v1.4.4/go.mod h1:PrwszSL5fbmsESocROrOGq/NULMXRw+bajY0ltzD6MA=
 github.com/fsouza/go-dockerclient v1.5.0 h1:7OtayOe5HnoG+KWMHgyyPymwaodnB2IDYuVfseKyxbA=
 github.com/fsouza/go-dockerclient v1.5.0/go.mod h1:AqZZK/zFO3phxYxlTsAaeAMSdQ9mgHuhy+bjN034Qds=
+github.com/fullsailor/pkcs7 v0.0.0-20190404230743-d7302db945fa/go.mod h1:KnogPXtdwXqoenmZCw6S+25EAm2MkxbG0deNDu4cbSA=
 github.com/ghodss/yaml v0.0.0-20150909031657-73d445a93680/go.mod h1:4dBDuWmgqj2HViK6kFavaiC9ZROes6MMH2rRYeMEF04=
 github.com/ghodss/yaml v0.0.0-20161207003320-04f313413ffd/go.mod h1:4dBDuWmgqj2HViK6kFavaiC9ZROes6MMH2rRYeMEF04=
 github.com/ghodss/yaml v0.0.0-20180820084758-c7ce16629ff4/go.mod h1:4dBDuWmgqj2HViK6kFavaiC9ZROes6MMH2rRYeMEF04=
@@ -713,6 +719,7 @@ github.com/imdario/mergo v0.3.5/go.mod h1:2EnlNZ0deacrJVfApfmtdGgDfMuh/nq6Ok1EcJ
 github.com/imdario/mergo v0.3.6/go.mod h1:2EnlNZ0deacrJVfApfmtdGgDfMuh/nq6Ok1EcJh5FfA=
 github.com/imdario/mergo v0.3.7 h1:Y+UAYTZ7gDEuOfhxKWy+dvb5dRQ6rJjFSdX2HZY1/gI=
 github.com/imdario/mergo v0.3.7/go.mod h1:2EnlNZ0deacrJVfApfmtdGgDfMuh/nq6Ok1EcJh5FfA=
+github.com/imdario/mergo v0.3.8/go.mod h1:2EnlNZ0deacrJVfApfmtdGgDfMuh/nq6Ok1EcJh5FfA=
 github.com/inconshreveable/mousetrap v1.0.0 h1:Z8tu5sraLXCXIcARxBp/8cbvlwVa7Z1NHg9XEKhtSvM=
 github.com/inconshreveable/mousetrap v1.0.0/go.mod h1:PxqpIevigyE2G7u3NXJIT2ANytuPF1OarO4DADm73n8=
 github.com/ishidawataru/sctp v0.0.0-20180213033435-07191f837fed h1:3MJOWnAfq3T9eoCQTarEY2DMlUWYcBkBLf03dAMvEb8=
@@ -1169,6 +1176,7 @@ github.com/vbatts/tar-split v0.11.1/go.mod h1:LEuURwDEiWjRjwu46yU3KVGuUdVv/dcnpc
 github.com/vbauerster/mpb v3.3.4+incompatible/go.mod h1:zAHG26FUhVKETRu+MWqYXcI70POlC6N8up9p1dID7SU=
 github.com/vbauerster/mpb v3.4.0+incompatible h1:mfiiYw87ARaeRW6x5gWwYRUawxaW1tLAD8IceomUCNw=
 github.com/vbauerster/mpb v3.4.0+incompatible/go.mod h1:zAHG26FUhVKETRu+MWqYXcI70POlC6N8up9p1dID7SU=
+github.com/vbauerster/mpb/v4 v4.11.1/go.mod h1:vMLa1J/ZKC83G2lB/52XpqT+ZZtFG4aZOdKhmpRL1uM=
 github.com/vektah/gqlparser v1.1.2/go.mod h1:1ycwN7Ij5njmMkPPAOaRFY4rET2Enx7IkVv3vaXspKw=
 github.com/vishvananda/netlink v0.0.0-20171020171820-b2de5d10e38e/go.mod h1:+SR5DhBJrl6ZM7CoCKvpw5BKroDKQ+PJqOg65H/2ktk=
 github.com/vishvananda/netlink v0.0.0-20181108222139-023a6dafdcdf/go.mod h1:+SR5DhBJrl6ZM7CoCKvpw5BKroDKQ+PJqOg65H/2ktk=
@@ -1241,6 +1249,7 @@ golang.org/x/crypto v0.0.0-20190701094942-4def268fd1a4/go.mod h1:yigFU9vqHzYiE8U
 golang.org/x/crypto v0.0.0-20190820162420-60c769a6c586/go.mod h1:yigFU9vqHzYiE8UmvKecakEJjdnWj3jj499lnFckfCI=
 golang.org/x/crypto v0.0.0-20190927123631-a832865fa7ad h1:5E5raQxcv+6CZ11RrBYQe5WRbUIWpScjh0kvHZkZIrQ=
 golang.org/x/crypto v0.0.0-20190927123631-a832865fa7ad/go.mod h1:yigFU9vqHzYiE8UmvKecakEJjdnWj3jj499lnFckfCI=
+golang.org/x/crypto v0.0.0-20191112222119-e1110fd1c708/go.mod h1:LzIPMQfyMNhhGPhUkYOs5KpL4U8rLKemX1yGLhDgUto=
 golang.org/x/exp v0.0.0-20190121172915-509febef88a4/go.mod h1:CJ0aWSM057203Lf6IL+f9T1iT9GByDxfZKAQTCR3kQA=
 golang.org/x/exp v0.0.0-20190125153040-c74c464bbbf2/go.mod h1:CJ0aWSM057203Lf6IL+f9T1iT9GByDxfZKAQTCR3kQA=
 golang.org/x/exp v0.0.0-20190306152737-a1d7652674e8/go.mod h1:CJ0aWSM057203Lf6IL+f9T1iT9GByDxfZKAQTCR3kQA=
@@ -1354,6 +1363,8 @@ golang.org/x/sys v0.0.0-20190902133755-9109b7679e13/go.mod h1:h1NjWce9XRLGQEsW7w
 golang.org/x/sys v0.0.0-20190916202348-b4ddaad3f8a3/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20190919044723-0c1ff786ef13 h1:/zi0zzlPHWXYXrO1LjNRByFu8sdGgCkj2JLDdBIB84k=
 golang.org/x/sys v0.0.0-20190919044723-0c1ff786ef13/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
+golang.org/x/sys v0.0.0-20191113165036-4c7a9d0fe056/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
+golang.org/x/sys v0.0.0-20191127021746-63cb32ae39b2/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/text v0.0.0-20160726164857-2910a502d2bf/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.0.0-20170915090833-1cbadb444a80/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
@@ -1473,6 +1484,7 @@ gopkg.in/square/go-jose.v2 v2.0.0-20180411045311-89060dee6a84 h1:ELQJ5WuT+ydETLC
 gopkg.in/square/go-jose.v2 v2.0.0-20180411045311-89060dee6a84/go.mod h1:M9dMgbHiYLoDGQrXy7OpJDJWiKiU//h+vD76mk0e1AI=
 gopkg.in/square/go-jose.v2 v2.2.2 h1:orlkJ3myw8CN1nVQHBFfloD+L3egixIa4FvUP6RosSA=
 gopkg.in/square/go-jose.v2 v2.2.2/go.mod h1:M9dMgbHiYLoDGQrXy7OpJDJWiKiU//h+vD76mk0e1AI=
+gopkg.in/square/go-jose.v2 v2.3.1/go.mod h1:M9dMgbHiYLoDGQrXy7OpJDJWiKiU//h+vD76mk0e1AI=
 gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 h1:uRGJdciOHaEIrze2W8Q3AKkepLTh2hOroT7a+7czfdQ=
 gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7/go.mod h1:dt/ZhP58zS4L8KSrWDmTeBkI65Dw0HsyUHuEVlX15mw=
 gopkg.in/warnings.v0 v0.1.1/go.mod h1:jksf8JmL6Qr/oQM2OXTHunEvvTAsrWBLb6OOjuVWRNI=
