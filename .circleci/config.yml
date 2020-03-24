@@ -369,8 +369,6 @@ jobs:
             RUN_CRITEST: "<< parameters.run_critest >>"
             TEST_ARGS: "<< parameters.test_args >>"
             TEST_USERNS: "<< parameters.test_userns >>"
-            # TODO: fix this failing CRI test
-            CRI_SKIP: "should fail with with an unloaded profile"
       - save_cache:
           key: v1-integration-{{ checksum "go.sum" }}
           paths:
